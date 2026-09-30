@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>AGENDA IMPLACÁVEL — IN’TEGRA FUEL</title>
+<meta name="description" content="Agenda operacional e controle de pendências da IN'TEGRA Fuel. NÃO PERCA A DIREÇÃO.">
+<meta name="theme-color" content="#0a0e13">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Agenda Implacável">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f5a524'/%3E%3Ctext x='32' y='43' font-family='Arial' font-weight='900' font-size='30' text-anchor='middle' fill='%23111'%3EAI%3C/text%3E%3C/svg%3E">
+<link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22AGENDA%20IMPLAC%C3%81VEL%20%E2%80%94%20IN%E2%80%99TEGRA%20FUEL%22%2C%22short_name%22%3A%22Agenda%20Implac%C3%A1vel%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%230a0e13%22%2C%22theme_color%22%3A%22%230a0e13%22%2C%22lang%22%3A%22pt-BR%22%7D">
+<style>
+:root{--bg:#0a0e13;--bg2:#0f141b;--card:#131a23;--card2:#18212c;--bd:#223041;--tx:#e8eef5;--mu:#8a98a8;--ac:#f5a524;--ac2:#ffcc4d;--p1:#ff4d4f;--p2:#ff9a1f;--p3:#3b82f6;--p4:#6b7785;--ok:#22c55e;--r:14px}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+body{padding-bottom:calc(84px + env(safe-area-inset-bottom))}
+a{color:var(--ac2)}
+button,select,input,textarea{font:inherit;color:inherit}
+header.top{position:sticky;top:0;z-index:20;background:rgba(10,14,19,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--bd)}
+.brand{display:flex;align-items:center;gap:10px;padding:10px 14px 6px;max-width:980px;margin:0 auto}
+.logo{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,var(--ac),#d9480f);display:grid;place-items:center;font-weight:900;color:#111;font-size:15px;flex:none}
+.brand h1{font-size:14px;letter-spacing:.08em;margin:0;font-weight:800;line-height:1.1}
+.brand h1 small{display:block;color:var(--ac);font-size:9.5px;letter-spacing:.1em;font-weight:700}
+.brand .sp{flex:1}
+.iconbtn{background:var(--card);border:1px solid var(--bd);border-radius:10px;min-width:42px;height:42px;font-size:18px;cursor:pointer}
+.qc{display:flex;gap:8px;padding:6px 14px 10px;max-width:980px;margin:0 auto}
+.qc input{flex:1;min-width:0;height:46px;border-radius:12px;border:1px solid var(--bd);background:var(--bg2);padding:0 14px;font-size:15px;outline:none}
+.qc input:focus{border-color:var(--ac)}
+.qc button{height:46px;min-width:52px;border-radius:12px;border:0;background:var(--ac);color:#111;font-weight:800;font-size:18px;cursor:pointer}
+main{max-width:980px;margin:0 auto;padding:12px 14px}
+.sample-banner{background:repeating-linear-gradient(45deg,#3a2a05,#3a2a05 10px,#2c2004 10px,#2c2004 20px);border:1px solid #6b4e0a;color:#ffd98a;border-radius:10px;padding:8px 12px;font-size:12px;font-weight:700;margin-bottom:10px;letter-spacing:.04em}
+.hero{margin:2px 0 12px}
+.hero h2{margin:0;font-size:22px;letter-spacing:.04em;font-weight:900}
+.hero .d{color:var(--mu);font-size:13px}
+.hero .motto{color:var(--ac);font-weight:900;letter-spacing:.18em;font-size:11px;margin-top:2px}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px}
+.kpi{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:8px 8px;text-align:center;cursor:pointer}
+.kpi b{display:block;font-size:18px;font-weight:900}
+.kpi span{font-size:10px;color:var(--mu);letter-spacing:.04em;text-transform:uppercase;line-height:1.1;display:block}
+.kpi.red b{color:var(--p1)}.kpi.or b{color:var(--p2)}.kpi.gr b{color:var(--ok)}.kpi.yl b{color:var(--ac2)}
+.sec{margin:16px 0 8px;display:flex;align-items:center;gap:8px}
+.sec h3{margin:0;font-size:12px;letter-spacing:.14em;color:var(--mu);font-weight:800;text-transform:uppercase}
+.sec .n{background:var(--card2);border:1px solid var(--bd);border-radius:20px;padding:0 8px;font-size:11px;color:var(--tx)}
+.sec .line{flex:1;height:1px;background:var(--bd)}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:var(--r);padding:12px;margin-bottom:10px;position:relative}
+.item{border-left:4px solid var(--p4);cursor:pointer}
+.item.P1{border-left-color:var(--p1)}.item.P2{border-left-color:var(--p2)}.item.P3{border-left-color:var(--p3)}
+.row1{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:4px}
+.pb{font-weight:900;font-size:11px;border-radius:6px;padding:2px 6px;color:#fff;letter-spacing:.03em}
+.pb.P1{background:var(--p1)}.pb.P2{background:var(--p2);color:#111}.pb.P3{background:var(--p3)}.pb.P4{background:var(--p4)}
+.tp{font-size:11px;font-weight:800;color:var(--ac2);letter-spacing:.05em}
+.st{font-size:10px;font-weight:800;border-radius:6px;padding:2px 6px;background:#243244;color:#b8c7d9;letter-spacing:.04em}
+.st.ATRASADO{background:#4a1416;color:#ff8a8c}.st.CONCLUÍDO{background:#11361f;color:#6ee7a0}.st.CANCELADO{background:#2a2a2a;color:#999;text-decoration:line-through}
+.st.AGUARDANDO{background:#3b2f10;color:#ffd166}.st.dir{background:#1c2a3f;color:#8fb7ff}
+.ttl{font-weight:700;font-size:15.5px;margin:2px 0}
+.meta{color:var(--mu);font-size:12.5px;display:flex;flex-wrap:wrap;gap:4px 10px;align-items:center}
+.next{margin-top:6px;font-size:12.5px;color:#cfe0ff;background:#142033;border-radius:8px;padding:5px 8px}
+.next.late{background:#3a1215;color:#ffb3b5}
+.cond{margin-top:6px;font-size:12px;color:#ffd166}
+.acts{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
+.acts button,.acts a,.btn{flex:1 1 auto;min-height:40px;border-radius:10px;border:1px solid var(--bd);background:var(--card2);font-size:13px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:4px;padding:0 10px;text-decoration:none;color:var(--tx)}
+.acts .ok,.btn.ok{background:#12351f;border-color:#1f6b3a;color:#7ff0a8}
+.acts .wa{background:#0f3324;border-color:#17684a;color:#5ee0a8}
+.btn.pri{background:var(--ac);border-color:var(--ac);color:#111}
+.btn.dng{background:#3a1215;border-color:#7a1f24;color:#ff9a9c}
+.btn.sm{min-height:34px;font-size:12px;flex:0 0 auto}
+details.why{margin-top:6px;font-size:12px;color:var(--mu)}
+details.why summary{cursor:pointer;list-style:none;display:inline-block;padding:2px 0}
+details.why summary::-webkit-details-marker{display:none}
+.why table{width:100%;border-collapse:collapse;margin-top:4px}
+.why td{padding:2px 4px;border-top:1px solid var(--bd)}
+.why td.pts{text-align:right;font-weight:800;color:var(--tx);white-space:nowrap}
+.top3 .card{border:1px solid #5a3f0b;background:linear-gradient(180deg,#1c1709,#131a23 60%)}
+.top3 .rank{position:absolute;right:12px;top:10px;font-size:26px;font-weight:900;color:#5a4411}
+.comp{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.comp span{font-size:10.5px;background:#231c0a;border:1px solid #4a3a12;border-radius:6px;padding:1px 6px;color:#ffd98a}
+.ici{display:inline-flex;align-items:center;gap:4px;font-size:10.5px;font-weight:900;border-radius:6px;padding:2px 6px;letter-spacing:.03em;white-space:nowrap}
+.ici.EXC{background:#063d2c;color:#34f5b0;border:1px solid #0e7a57}.ici.CONF{background:#0f3a1c;color:#86efac;border:1px solid #1f7a3a}.ici.ATEN{background:#3d340a;color:#fde047;border:1px solid #7a6a12}.ici.RISC{background:#43230a;color:#fdba74;border:1px solid #8a4a14}.ici.CRIT{background:#450f12;color:#fca5a5;border:1px solid #8a1f24}.ici.SEM{background:#1e2530;color:#94a3b8;border:1px solid #334155}
+.vc{font-size:11px;color:var(--ac2);font-weight:800;white-space:nowrap}
+.alert{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border-radius:12px;margin-bottom:8px;background:var(--card);border:1px solid var(--bd);cursor:pointer}
+.alert .sv{font-size:9.5px;font-weight:900;border-radius:5px;padding:2px 5px;flex:none;margin-top:2px;letter-spacing:.04em}
+.alert.CRÍTICO{border-color:#6b1a1e;background:#1d1012}.alert.CRÍTICO .sv{background:var(--p1);color:#fff}
+.alert.ALTO{border-color:#5c3a0c}.alert.ALTO .sv{background:var(--p2);color:#111}
+.alert.MÉDIO .sv{background:#2b4a7a;color:#dbe7ff}.alert.INFO .sv{background:#334155;color:#cbd5e1}
+.alert .tx{flex:1;font-size:13.5px}.alert .tx small{display:block;color:var(--mu);font-size:11.5px}
+.alert .go{flex:none}
+details.col{background:var(--bg2);border:1px solid var(--bd);border-radius:var(--r);margin:10px 0;padding:0 10px}
+details.col>summary{padding:12px 2px;cursor:pointer;font-weight:800;letter-spacing:.12em;font-size:12px;color:var(--mu);list-style:none;display:flex;justify-content:space-between}
+details.col>summary::-webkit-details-marker{display:none}
+details.col[open]>summary{color:var(--tx)}
+nav.tabs{position:fixed;left:0;right:0;bottom:0;z-index:30;background:rgba(12,17,23,.98);border-top:1px solid var(--bd);display:flex;justify-content:space-around;padding:6px 4px calc(6px + env(safe-area-inset-bottom))}
+nav.tabs a{flex:1;text-align:center;text-decoration:none;color:var(--mu);font-size:10.5px;font-weight:800;letter-spacing:.08em;padding:6px 0;border-radius:10px;min-height:52px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+nav.tabs a i{font-style:normal;font-size:20px}
+nav.tabs a.on{color:var(--ac);background:#1a1508}
+.fab{position:fixed;right:16px;bottom:calc(80px + env(safe-area-inset-bottom));z-index:31;width:60px;height:60px;border-radius:50%;background:var(--ac);color:#111;border:0;font-size:32px;font-weight:700;box-shadow:0 8px 24px rgba(245,165,36,.35);cursor:pointer}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:50;display:none;align-items:flex-end;justify-content:center}
+.overlay.on{display:flex}
+.sheet{background:var(--bg2);border:1px solid var(--bd);border-bottom:0;border-radius:18px 18px 0 0;width:100%;max-width:640px;max-height:92vh;overflow:auto;padding:16px 16px calc(18px + env(safe-area-inset-bottom))}
+@media(min-width:700px){.overlay{align-items:center}.sheet{border-radius:18px;border-bottom:1px solid var(--bd)}}
+.sheet h3{margin:0 0 10px;font-size:16px;letter-spacing:.04em}
+.sheet .hd{display:flex;align-items:center;gap:8px;margin-bottom:10px}.sheet .hd h3{flex:1;margin:0}
+label.f{display:block;margin:8px 0}
+label.f>span{display:block;font-size:11px;font-weight:800;letter-spacing:.08em;color:var(--mu);margin-bottom:4px;text-transform:uppercase}
+label.f input,label.f select,label.f textarea,.inp{width:100%;min-height:44px;border-radius:10px;border:1px solid var(--bd);background:var(--card);padding:8px 10px;font-size:15px;outline:none}
+label.f textarea{min-height:64px;resize:vertical}
+label.f input:focus,label.f select:focus,label.f textarea:focus{border-color:var(--ac)}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:0 10px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0 8px}
+.req{border:1px dashed #7a5a12;border-radius:12px;padding:4px 10px 8px;background:#17130a;margin:10px 0}
+.req>b{font-size:11px;letter-spacing:.12em;color:var(--ac)}
+.err{background:#3a1215;border:1px solid #7a1f24;color:#ffb3b5;padding:8px 10px;border-radius:10px;font-size:13px;margin:8px 0;display:none}
+.err.on{display:block}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0}
+.chip{border:1px solid var(--bd);background:var(--card);border-radius:20px;padding:6px 10px;font-size:12px;cursor:pointer;min-height:34px}
+.chip.on{background:var(--ac);color:#111;border-color:var(--ac);font-weight:800}
+.chip.pos{border-color:#1f6b3a;color:#7ff0a8}.chip.neg{border-color:#7a1f24;color:#ff9a9c}
+.pv{background:var(--card);border:1px solid #5a3f0b;border-radius:12px;padding:10px;margin-bottom:8px}
+.pv .k{font-size:10.5px;color:var(--mu);letter-spacing:.08em;font-weight:800}
+.pv ul{margin:4px 0 0 18px;padding:0}
+.muted{color:var(--mu)}.small{font-size:12px}
+.row{display:flex;gap:8px;align-items:center}
+.flt{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px}
+.flt select,.flt input{min-height:40px;border-radius:10px;border:1px solid var(--bd);background:var(--card);padding:0 8px;font-size:13px;width:100%}
+.days{display:flex;gap:6px;overflow-x:auto;padding-bottom:6px;margin-bottom:8px;scrollbar-width:none}
+.day{flex:none;width:52px;border:1px solid var(--bd);background:var(--card);border-radius:12px;text-align:center;padding:6px 0;cursor:pointer}
+.day b{display:block;font-size:17px}.day span{font-size:10px;color:var(--mu);text-transform:uppercase}
+.day i{display:block;font-style:normal;font-size:10px;color:var(--ac2);min-height:13px}
+.day.on{border-color:var(--ac);background:#1a1508}.day.late{border-color:#6b1a1e}.day.late i{color:var(--p1)}
+.dayh{font-size:12px;font-weight:900;letter-spacing:.12em;color:var(--ac2);margin:14px 0 6px;text-transform:uppercase}
+.crow{display:flex;gap:10px;align-items:center;cursor:pointer}
+.av{width:40px;height:40px;border-radius:10px;background:#1d2837;display:grid;place-items:center;font-weight:900;color:var(--ac2);flex:none;font-size:14px}
+.crow .b{flex:1;min-width:0}.crow .b b{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dims3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0}
+.dim{background:var(--card2);border:1px solid var(--bd);border-radius:12px;padding:8px}
+.dim .k{font-size:9.5px;letter-spacing:.12em;color:var(--mu);font-weight:900}
+.dim .v{font-size:16px;font-weight:900;margin-top:2px}
+.bars{margin-top:6px}
+.bar{display:grid;grid-template-columns:120px 1fr 44px;gap:6px;align-items:center;font-size:11.5px;margin:3px 0;color:var(--mu)}
+.bar .t{height:8px;background:#1d2633;border-radius:5px;overflow:hidden}.bar .t i{display:block;height:100%;border-radius:5px}
+.bar .p{text-align:right;color:var(--tx);font-weight:700}
+.tots{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.tot{background:var(--card2);border-radius:10px;padding:8px;text-align:center;font-size:11px;color:var(--mu)}
+.tot b{display:block;font-size:15px;color:var(--tx)}
+.tl{position:relative;margin-left:8px;padding-left:18px;border-left:2px solid var(--bd)}
+.ev{position:relative;margin-bottom:12px}
+.ev .ic{position:absolute;left:-31px;top:0;width:24px;height:24px;border-radius:50%;background:var(--card2);border:1px solid var(--bd);display:grid;place-items:center;font-size:12px}
+.ev .h{font-size:11px;color:var(--mu);font-weight:700;letter-spacing:.04em}
+.ev .x{font-size:13.5px}
+.tag{font-size:10px;font-weight:900;border-radius:5px;padding:1px 5px;margin-left:4px}
+.tag.POS{background:#12351f;color:#7ff0a8}.tag.NEG{background:#3a1215;color:#ff9a9c}.tag.NEU{background:#243244;color:#b8c7d9}
+table.log{width:100%;border-collapse:collapse;font-size:12px}
+table.log th{text-align:left;color:var(--mu);font-size:10px;letter-spacing:.08em;padding:4px;border-bottom:1px solid var(--bd)}
+table.log td{padding:5px 4px;border-bottom:1px solid #1a2330;vertical-align:top}
+.ins{border-left:4px solid var(--ac)}
+.ins.bad{border-left-color:var(--p1)}.ins.good{border-left-color:var(--ok)}
+.ins .num{font-size:12px;color:var(--mu);margin-top:4px}
+.empty{text-align:center;color:var(--mu);padding:28px 12px}
+.empty b{display:block;color:var(--tx);font-size:16px;margin-bottom:6px}
+.ck{display:flex;gap:8px;align-items:center;padding:6px 0;font-size:14px}
+.ck input{width:22px;height:22px;accent-color:var(--ac)}
+.hist{font-size:12px;color:var(--mu);border-top:1px solid var(--bd);padding:4px 0}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:150px;background:#1f2b3a;border:1px solid var(--ac);color:var(--tx);padding:10px 16px;border-radius:12px;z-index:60;font-size:14px;font-weight:700;display:none;max-width:90vw}
+.toast.on{display:block}
+.stars{color:var(--ac2);letter-spacing:1px}
+hr.s{border:0;border-top:1px solid var(--bd);margin:12px 0}
+@media(min-width:760px){.kpis{grid-template-columns:repeat(4,1fr)}.cols2{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}}
+
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="brand"><div class="logo">AI</div><h1>AGENDA IMPLACÁVEL<small>IN’TEGRA FUEL · NÃO PERCA A DIREÇÃO.</small></h1><div class="sp"></div><button class="iconbtn" data-go="alertas" title="Alertas">🔔</button><button class="iconbtn" data-go="config" title="Configurações">⚙</button></div>
+  <form class="qc" id="qcform" autocomplete="off"><input id="qcin" enterkeyhint="go" placeholder="ex.: Cobrar João sexta se ele não pagar" aria-label="Comando rápido"><button type="submit" title="Interpretar">➜</button></form>
+</header>
+<main id="view"></main>
+<button class="fab" data-act="fab" aria-label="Criar">+</button>
+<nav class="tabs">
+  <a href="#hoje" data-tab="hoje"><i>☀️</i>HOJE</a><a href="#agenda" data-tab="agenda"><i>📅</i>AGENDA</a><a href="#contatos" data-tab="contatos"><i>👥</i>CONTATOS</a><a href="#analise" data-tab="analise"><i>📊</i>ANÁLISE</a>
+</nav>
+<div class="overlay" id="ov"><div class="sheet" id="sheet"></div></div>
+<div class="toast" id="toast"></div>
+<script>
+'use strict';
+/* ============ AGENDA IMPLACÁVEL — núcleo (dados, datas, ICI, prioridade, alertas, parser) ============ */
+const LS_KEY='agendaImplacavel.v1';
+const TIPOS_CONTATO=['CLIENTE','PROSPECT','FORNECEDOR','PARCEIRO','TÉCNICO','PRESTADOR DE SERVIÇO','FABRICANTE','REPRESENTANTE','OUTRO'];
+const TIPOS_ITEM=['ATENDIMENTO','INSTALAÇÃO','MANUTENÇÃO','VISITA COMERCIAL','REUNIÃO','ORÇAMENTO','COBRANÇA','COMPRA','ENTREGA','FOLLOW-UP','RETORNO AO CLIENTE','VENCIMENTO','PÓS-VENDA','PROSPECÇÃO','OUTRO'];
+const STATUS=['PENDENTE','CONFIRMADO','EM EXECUÇÃO','AGUARDANDO TERCEIRO','AGUARDANDO CLIENTE','ATRASADO','CONCLUÍDO','CANCELADO'];
+const OPEN=new Set(['PENDENTE','CONFIRMADO','EM EXECUÇÃO','AGUARDANDO TERCEIRO','AGUARDANDO CLIENTE','ATRASADO']);
+const TIPOS_EVENTO=['PRIMEIRO CONTATO','CONVERSA','ORÇAMENTO ENVIADO','ORÇAMENTO APROVADO','ORÇAMENTO PERDIDO','SERVIÇO','COMPRA','PAGAMENTO','ATRASO','PROBLEMA','PROMESSA','ENTREGA','ELOGIO','RECLAMAÇÃO','NEGOCIAÇÃO','PENDÊNCIA'];
+const EV_ICON={'PRIMEIRO CONTATO':'🤝','CONVERSA':'💬','ORÇAMENTO ENVIADO':'📄','ORÇAMENTO APROVADO':'✅','ORÇAMENTO PERDIDO':'✖️','SERVIÇO':'🔧','COMPRA':'🛒','PAGAMENTO':'💰','ATRASO':'⏰','PROBLEMA':'⚠️','PROMESSA':'🤞','ENTREGA':'📦','ELOGIO':'👏','RECLAMAÇÃO':'😠','NEGOCIAÇÃO':'⚖️','PENDÊNCIA':'📌'};
+const IT_ICON={'ATENDIMENTO':'🛠️','INSTALAÇÃO':'🔩','MANUTENÇÃO':'🔧','VISITA COMERCIAL':'🚗','REUNIÃO':'👥','ORÇAMENTO':'📄','COBRANÇA':'💰','COMPRA':'🛒','ENTREGA':'📦','FOLLOW-UP':'📞','RETORNO AO CLIENTE':'↩️','VENCIMENTO':'📅','PÓS-VENDA':'⭐','PROSPECÇÃO':'🎯','OUTRO':'•'};
+const DIMS={COMPROMISSOS:{max:25,label:'Compromissos',s:'COMP'},FINANCEIRO:{max:25,label:'Financeiro',s:'FIN'},COMUNICACAO:{max:15,label:'Comunicação',s:'COM'},OPERACIONAL:{max:20,label:'Histórico operacional',s:'OPER'},RECIPROCIDADE:{max:15,label:'Reciprocidade/transparência',s:'RECIP'}};
+const ICI_CFG={baseline:0.65,prior:1,halfLife:180,val:{POS:[0.9,1,1],NEU:[0.65,0.65,0.65],NEG:[0.3,0.1,0]}};
+const RES_LABEL={POS:'positivo',NEU:'neutro',NEG:'negativo'};
+const DEFAULT_SETTINGS={responsaveis:['Eu'],diasSemContato:30,diasOrcFollow:3,diasOportParada:20,diasInativo:60,diasVencimento:15,minEventosAnalise:3,notif:false,sample:false};
+
+let S=emptyState();
+function emptyState(){return {version:1,settings:JSON.parse(JSON.stringify(DEFAULT_SETTINGS)),contacts:[],items:[],events:[],iciLog:[]};}
+function load(){try{const raw=localStorage.getItem(LS_KEY);if(raw){const d=JSON.parse(raw);S=Object.assign(emptyState(),d);S.settings=Object.assign({},DEFAULT_SETTINGS,d.settings||{});}}catch(e){console.error(e);}}
+function save(){localStorage.setItem(LS_KEY,JSON.stringify(S));}
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,8);
+
+/* ---------- datas (strings locais YYYY-MM-DD) ---------- */
+const pad=n=>String(n).padStart(2,'0');
+function nowD(){return window.__NOW?new Date(window.__NOW):new Date();}
+function ds(d){return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());}
+function todayStr(){return ds(nowD());}
+function nowHM(){const d=nowD();return pad(d.getHours())+':'+pad(d.getMinutes());}
+function parseDs(s){const [y,m,d]=s.split('-').map(Number);return new Date(y,m-1,d);}
+function addDays(s,n){const d=parseDs(s);d.setDate(d.getDate()+n);return ds(d);}
+function addMonths(s,n){const d=parseDs(s);const day=d.getDate();d.setDate(1);d.setMonth(d.getMonth()+n);const last=new Date(d.getFullYear(),d.getMonth()+1,0).getDate();d.setDate(Math.min(day,last));return ds(d);}
+function diffDays(a,b){return Math.round((parseDs(b)-parseDs(a))/86400000);}
+const WD=['dom','seg','ter','qua','qui','sex','sáb'];
+const WDL=['domingo','segunda-feira','terça-feira','quarta-feira','quinta-feira','sexta-feira','sábado'];
+const MES=['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
+function fmtD(s){if(!s)return '';const d=parseDs(s);return WD[d.getDay()]+' '+pad(d.getDate())+'/'+pad(d.getMonth()+1);}
+function fmtDL(s){const d=parseDs(s);const w=WDL[d.getDay()];return w.charAt(0).toUpperCase()+w.slice(1)+', '+d.getDate()+' de '+MES[d.getMonth()]+' de '+d.getFullYear();}
+function relD(s){const n=diffDays(todayStr(),s);if(n===0)return 'hoje';if(n===1)return 'amanhã';if(n===-1)return 'ontem';if(n<0)return 'há '+(-n)+'d';return 'em '+n+'d';}
+const brl=v=>'R$ '+(Number(v)||0).toLocaleString('pt-BR',{minimumFractionDigits:0,maximumFractionDigits:0});
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+
+/* ---------- acessores ---------- */
+const contact=id=>S.contacts.find(c=>c.id===id);
+const cName=c=>c?(c.fantasia||c.nome):'';
+const isSupplier=c=>c&&['FORNECEDOR','FABRICANTE','REPRESENTANTE'].includes(c.tipo);
+const isOpen=it=>OPEN.has(it.status);
+function contactEvents(cid){return S.events.filter(e=>e.contatoId===cid).sort((a,b)=>a.data<b.data?-1:a.data>b.data?1:(a.ts||0)-(b.ts||0));}
+function lastContact(cid){let m=null;for(const e of S.events)if(e.contatoId===cid&&(!m||e.data>m))m=e.data;return m;}
+function nextContact(cid){let m=null,it=null;for(const i of S.items)if(i.contatoId===cid&&isOpen(i)){const d=itemDue(i);if(!m||d<m){m=d;it=i;}}return it?{data:m,item:it}:null;}
+function itemDue(it){let d=it.data;if(isOpen(it)&&it.prazoProxima&&it.prazoProxima<d)d=it.prazoProxima;return d;}
+function waLink(num,txt){let d=String(num||'').replace(/\D/g,'');if(!d)return null;if(d.length<=11)d='55'+d;return 'https://wa.me/'+d+(txt?'?text='+encodeURIComponent(txt):'');}
+
+/* ---------- ICI (Índice de Credibilidade IN'TEGRA) ---------- */
+function iciCompute(cid,evsIn,ref){
+  const evs=(evsIn||S.events.filter(e=>e.contatoId===cid)).filter(e=>e.dimensao&&DIMS[e.dimensao]);
+  if(!evs.length)return null;
+  const R=ref||todayStr();const dims={};let total=0;
+  for(const k in DIMS){
+    const list=evs.filter(e=>e.dimensao===k);let num=ICI_CFG.baseline*ICI_CFG.prior,den=ICI_CFG.prior;
+    for(const e of list){const age=Math.max(0,diffDays(e.data,R));const rec=Math.pow(0.5,age/ICI_CFG.halfLife);const sev=clamp(+e.severidade||1,1,3);const w=rec*(1+0.5*(sev-1));const v=ICI_CFG.val[e.resultado||'NEU'][sev-1];num+=w*v;den+=w;}
+    const ratio=num/den;const pts=ratio*DIMS[k].max;dims[k]={ratio,pts,n:list.length};total+=pts;
+  }
+  return {score:Math.round(total),raw:Math.round(total*10)/10,dims,n:evs.length};
+}
+function iciBand(score){if(score==null)return {k:'SEM',l:'SEM HISTÓRICO'};if(score>=90)return {k:'EXC',l:'EXCEPCIONAL'};if(score>=75)return {k:'CONF',l:'CONFIÁVEL'};if(score>=60)return {k:'ATEN',l:'ATENÇÃO'};if(score>=40)return {k:'RISC',l:'RISCO'};return {k:'CRIT',l:'CRÍTICO'};}
+function iciOf(cid){return cid?iciCompute(cid):null;}
+function evMotivo(e){const d=DIMS[e.dimensao];return (e.resultado==='POS'?'+':e.resultado==='NEG'?'−':'±')+' '+d.label+' ('+RES_LABEL[e.resultado||'NEU']+', severidade '+(e.severidade||1)+'): '+(e.descricao||e.tipo);}
+function logIci(cid,before,after,ev,motivo,data){
+  S.iciLog.push({id:uid(),contatoId:cid,data:data||todayStr(),ts:Date.now(),eventoId:ev?ev.id:null,evento:ev?(ev.tipo+' — '+(ev.descricao||'')):'(recálculo)',anterior:before?before.score:null,nova:after?after.score:null,anteriorExato:before&&before.raw!=null?before.raw:null,novaExata:after&&after.raw!=null?after.raw:null,motivo});
+}
+function addEvent(ev,opts={}){
+  ev.id=ev.id||uid();ev.ts=ev.ts||Date.now();ev.data=ev.data||todayStr();
+  const before=ev.contatoId&&ev.dimensao?iciCompute(ev.contatoId,opts.subset):null;
+  S.events.push(ev);
+  if(ev.contatoId&&ev.dimensao){const sub=opts.subset?opts.subset.concat([ev]):null;const after=iciCompute(ev.contatoId,sub);logIci(ev.contatoId,before,after,ev,evMotivo(ev),opts.logDate||todayStr());}
+  return ev;
+}
+function deleteEvent(id){const ev=S.events.find(e=>e.id===id);if(!ev)return;const before=ev.contatoId&&ev.dimensao?iciCompute(ev.contatoId):null;S.events=S.events.filter(e=>e.id!==id);if(ev.contatoId&&ev.dimensao){logIci(ev.contatoId,before,iciCompute(ev.contatoId),ev,'Evento removido do histórico: '+(ev.descricao||ev.tipo));}}
+function iciDecayCheck(){ // registra mudanças por decaimento temporal para que TODA alteração de nota fique no log
+  let ch=0;for(const c of S.contacts){const cur=iciCompute(c.id);const logs=S.iciLog.filter(l=>l.contatoId===c.id);const last=logs[logs.length-1];const lastScore=last?last.nova:null;const curScore=cur?cur.score:null;
+    if(last&&lastScore!==curScore){logIci(c.id,{score:lastScore},cur,null,'Recálculo automático por decaimento temporal (eventos antigos perdem peso; meia-vida '+ICI_CFG.halfLife+' dias)');ch++;}}
+  return ch;
+}
+
+/* ---------- PRIORIDADE INTELIGENTE ---------- */
+function priority(it){
+  const f=[];const t=todayStr();const due=itemDue(it);const dd=diffDays(t,due);const c=contact(it.contatoId);const ici=c?iciCompute(c.id):null;
+  let U;if(dd<0){U=35;f.push(['Urgência',35,'prazo vencido há '+(-dd)+' dia(s)']);}
+  else if(dd===0){U=it.hora?30:28;f.push(['Urgência',U,'vence hoje'+(it.hora?' às '+it.hora:'')]);}
+  else if(dd===1){U=20;f.push(['Urgência',20,'vence amanhã']);}
+  else if(dd<=3){U=14;f.push(['Urgência',14,'vence em '+dd+' dias']);}
+  else if(dd<=7){U=8;f.push(['Urgência',8,'vence em '+dd+' dias']);}
+  else {U=3;f.push(['Urgência',3,'prazo distante ('+dd+' dias)']);}
+  const valor=+it.valor||0;let F=0;if(valor>0){F=Math.min(20,Math.round(20*Math.log10(1+valor)/Math.log10(1+50000)));f.push(['Impacto financeiro',F,brl(valor)+' envolvidos']);}
+  let I=0;if(c&&c.valorImportancia){I=clamp(+c.valorImportancia,0,5)*3;f.push(['Importância do contato',I,'valor comercial '+c.valorImportancia+'/5']);}
+  let R=0;const rp=+it.riscoPerda||0;if(rp){R+=rp*3;f.push(['Risco de perda',rp*3,['','baixo','médio','alto'][rp]]);}
+  if(['COBRANÇA','VENCIMENTO'].includes(it.tipo)&&dd<0){R+=4;f.push(['Risco',4,'dinheiro/vencimento atrasado']);}
+  if(ici&&ici.score<60){if(it.direcao==='TERCEIRO'){R+=4;f.push(['Credibilidade da contraparte',4,'ICI '+ici.score+' e você depende dele: cobrar de perto']);}
+    if(it.tipo==='COBRANÇA'){R+=5;f.push(['Credibilidade da contraparte',5,'ICI '+ici.score+': risco de inadimplência']);}
+    if(ici.score<40){R+=2;f.push(['Credibilidade crítica',2,'ICI abaixo de 40']);}}
+  R=Math.min(15,R);
+  let D=0;if(it.direcao!=='TERCEIRO'){if(c&&['CLIENTE','PROSPECT'].includes(c.tipo)){D=6;f.push(['Dependência',6,'cliente está esperando por você']);}else{D=3;f.push(['Dependência',3,'depende de você']);}
+    const waiting=S.items.filter(x=>x.id!==it.id&&isOpen(x)&&x.dependeDe===it.id).length;if(waiting){D=Math.min(10,D+2*waiting);f.push(['Dependência',2*waiting,waiting+' item(ns) aguardam este']);}}
+  let O=0;if(c&&(c.tipo==='PROSPECT'||['PROSPECÇÃO','VISITA COMERCIAL','ORÇAMENTO'].includes(it.tipo))){const pot=+c.valorPotencial||0;O=pot>=50000?5:pot>=15000?4:pot>0?2:1;f.push(['Oportunidade futura',O,pot?'potencial '+brl(pot):'nova oportunidade']);}
+  const score=Math.min(100,U+F+I+R+D+O);
+  let level;if(dd<0||score>=65)level='P1';else if(dd===0||score>=45)level='P2';else if(dd<=7||score>=25)level='P3';else level='P4';
+  return {score,level,dd,factors:f,comp:{IMPACTO:F+D+O,'URGÊNCIA':U,VALOR:I,RISCO:R}};
+}
+const P_LABEL={P1:'P1 AGORA',P2:'P2 HOJE',P3:'P3 PROGRAMADO',P4:'P4 ACOMPANHAR'};
+
+/* ---------- ALERTAS IMPLACÁVEIS (calculados, nunca "dispensados") ---------- */
+const SEV_ORDER={'CRÍTICO':0,'ALTO':1,'MÉDIO':2,'INFO':3};
+function A(sev,kind,text,sub,ref){return Object.assign({sev,kind,text,sub:sub||''},ref||{});}
+function alertsForItem(it,t){
+  t=t||todayStr();const L=[];if(!isOpen(it))return L;const dd=diffDays(t,it.data);const c=contact(it.contatoId);const nm=c?cName(c):(it._novoContato||'');const ref={itemId:it.id,contatoId:it.contatoId};const who=nm?' — '+nm:'';
+  const money=['COBRANÇA','VENCIMENTO'].includes(it.tipo);
+  if(money){
+    if(it.tipo==='COBRANÇA'){if(dd<0)L.push(A('CRÍTICO','pagamento','PAGAMENTO ATRASADO há '+(-dd)+'d: '+it.descricao+who,it.valor?brl(it.valor):'',ref));else if(dd<=3)L.push(A('ALTO','pagamento','Pagamento/cobrança vence '+relD(it.data)+': '+it.descricao+who,it.valor?brl(it.valor):'',ref));}
+    else{if(dd<0)L.push(A('CRÍTICO','vencimento','VENCIDO há '+(-dd)+'d: '+it.descricao+who,'documento/licença/pagamento',ref));else if(dd<=(S.settings.diasVencimento||15))L.push(A(dd<=3?'ALTO':'MÉDIO','vencimento','Documento/licença/pagamento vence '+relD(it.data)+': '+it.descricao+who,'',ref));}
+  } else if(dd<0)L.push(A('CRÍTICO','atrasado','ATRASADO há '+(-dd)+'d: '+it.descricao+who,it.tipo,ref));
+  else if(dd===0)L.push(A(it.hora?'ALTO':'MÉDIO','proximo','HOJE'+(it.hora?' às '+it.hora:'')+': '+it.descricao+who,it.tipo,ref));
+  else if(dd===1)L.push(A('MÉDIO','proximo','AMANHÃ'+(it.hora?' às '+it.hora:'')+': '+it.descricao+who,it.tipo,ref));
+  if(it.prazoProxima&&it.prazoProxima<t&&dd>=0)L.push(A('ALTO','prox_vencida','Próxima ação vencida: '+it.proximaAcao+who,'prazo era '+fmtD(it.prazoProxima),ref));
+  if(['ENTREGA','COMPRA'].includes(it.tipo)&&it.direcao==='TERCEIRO'&&dd<=0)L.push(A(dd<0?'CRÍTICO':'ALTO','fornecedor','Fornecedor deveria entregar '+(dd<0?'(atrasado '+(-dd)+'d)':'hoje')+': '+it.descricao+who,'',ref));
+  if(it.tipo==='COMPRA'&&it.status==='AGUARDANDO TERCEIRO')L.push(A('MÉDIO','peca','Peça aguardada: '+it.descricao+who,'previsão '+fmtD(it.data),ref));
+  if(['INSTALAÇÃO','MANUTENÇÃO','ATENDIMENTO'].includes(it.tipo)&&(it.status==='AGUARDANDO TERCEIRO'||((it.materiais||[]).length&&!it.materiaisOk&&dd<=3)))
+    L.push(A('ALTO','material','Serviço aguardando material: '+((it.materiais||[]).join(', ')||it.descricao)+who,it.status==='AGUARDANDO TERCEIRO'?'status: aguardando terceiro':'confirme a separação dos materiais ('+relD(it.data)+')',ref));
+  if(['ORÇAMENTO','RETORNO AO CLIENTE'].includes(it.tipo)&&it.direcao!=='TERCEIRO'&&dd>=0)L.push(A(dd<=0?'ALTO':'MÉDIO','aguardando','Cliente aguardando '+(it.tipo==='ORÇAMENTO'?'orçamento':'retorno')+': '+it.descricao+who,'prazo '+relD(it.data),ref));
+  if(it.tipo==='MANUTENÇÃO'&&dd>3&&dd<=30&&/prevent/i.test(it.descricao||''))L.push(A('INFO','preventiva','Manutenção preventiva em '+dd+' dias: '+it.descricao+who,'',ref));
+  if(it.condicao&&dd<=1&&dd>=0)L.push(A('MÉDIO','condicional','Ação condicional '+relD(it.data)+': verificar "'+it.condicao+'"'+who,it.descricao,ref));
+  return L;
+}
+function contactAlerts(t){
+  t=t||todayStr();const L=[];const st=S.settings;
+  for(const c of S.contacts){
+    const evs=contactEvents(c.id);if(!evs.length)continue;const last=evs[evs.length-1].data;const gap=diffDays(last,t);const hasOpen=S.items.some(i=>i.contatoId===c.id&&isOpen(i));
+    if(['CLIENTE'].includes(c.tipo)&&gap>st.diasSemContato&&!hasOpen)L.push(A(gap>st.diasInativo?'ALTO':'MÉDIO','sem_retorno','Cliente sem contato há '+gap+' dias: '+cName(c),'último contato '+fmtD(last)+' · nenhuma ação agendada',{contatoId:c.id}));
+    if(c.tipo==='PROSPECT'&&gap>st.diasOportParada&&!hasOpen)L.push(A('MÉDIO','oport_parada','Oportunidade parada há '+gap+' dias: '+cName(c),c.valorPotencial?'potencial '+brl(c.valorPotencial):'',{contatoId:c.id}));
+    const hasFU=S.items.some(i=>i.contatoId===c.id&&isOpen(i)&&['FOLLOW-UP','RETORNO AO CLIENTE','ORÇAMENTO'].includes(i.tipo));
+    if(!hasFU)for(const e of evs){if(e.tipo!=='ORÇAMENTO ENVIADO')continue;const age=diffDays(e.data,t);if(age<st.diasOrcFollow)continue;
+      const later=evs.some(x=>x.data>e.data&&['ORÇAMENTO APROVADO','ORÇAMENTO PERDIDO','CONVERSA','NEGOCIAÇÃO'].includes(x.tipo));
+      if(!later)L.push(A('ALTO','orc_sem_follow','Orçamento sem follow-up há '+age+' dias: '+cName(c),(e.descricao||'')+(e.valor?' · '+brl(e.valor):''),{contatoId:c.id,valor:+e.valor||0,eventoId:e.id}));}
+  }
+  return L;
+}
+function allAlerts(){const t=todayStr();let L=[];for(const it of S.items)L=L.concat(alertsForItem(it,t));L=L.concat(contactAlerts(t));return L.sort((a,b)=>SEV_ORDER[a.sev]-SEV_ORDER[b.sev]);}
+
+/* ---------- automação de status ---------- */
+function hist(it,acao,detalhe){(it.historico=it.historico||[]).push({ts:new Date().toISOString(),acao,detalhe:detalhe||''});}
+function refreshAuto(){let ch=false;const t=todayStr();for(const it of S.items){if(isOpen(it)&&it.status!=='ATRASADO'&&it.data<t){it.statusAntes=it.status;it.status='ATRASADO';hist(it,'ATRASADO (automático)','prazo '+fmtD(it.data)+' passou sem conclusão');ch=true;}}if(ch)save();return ch;}
+
+/* ---------- regra da próxima ação ---------- */
+function validateItem(it){
+  const e=[];if(!it.descricao||!it.descricao.trim())e.push('Descrição obrigatória.');if(!it.tipo)e.push('Tipo obrigatório.');if(!it.data)e.push('Data obrigatória.');
+  if(isOpen(it)&&(!it.proximaAcao||!it.proximaAcao.trim()||!it.prazoProxima))e.push('REGRA DA PRÓXIMA AÇÃO: item aberto não pode ser salvo sem PRÓXIMA AÇÃO e PRAZO.');
+  if(it.status==='CANCELADO'&&!(it.justificativa||'').trim())e.push('Cancelamento exige justificativa.');
+  return e;
+}
+function defaultNext(tipo,data,desc,cond){
+  const t=todayStr();const vesp=data?(addDays(data,-1)<t?t:addDays(data,-1)):t;
+  switch(tipo){
+    case 'INSTALAÇÃO':case 'MANUTENÇÃO':case 'ATENDIMENTO':return {a:'Confirmar materiais separados e horário com o cliente (véspera)',p:vesp};
+    case 'VISITA COMERCIAL':case 'REUNIÃO':return {a:'Confirmar agenda por WhatsApp (véspera)',p:vesp};
+    case 'COBRANÇA':return cond?{a:'Verificar se o pagamento entrou antes de cobrar (condição: '+cond+')',p:data||t}:{a:'Enviar cobrança/2ª via e ligar',p:data||t};
+    case 'COMPRA':return {a:'Confirmar envio/rastreio com fornecedor',p:data?(addDays(data,-1)<t?t:addDays(data,-1)):t};
+    case 'ENTREGA':return {a:'Confirmar entrega/recebimento',p:data||t};
+    case 'ORÇAMENTO':return {a:'Enviar orçamento ao cliente',p:data||t};
+    default:return {a:desc||'Executar ação',p:data||t};
+  }
+}
+function nextTemplates(it){
+  const T=todayStr();const L=[];const seen=new Set();
+  const add=(key,label,tipo,desc,days,dir,months)=>{const data=months?addMonths(T,months):addDays(T,days);const k=tipo+data;if(seen.has(k))return;seen.add(k);L.push({key,label,tipo,desc,data,dir:dir||'MIM'});};
+  switch(it.tipo){
+    case 'ORÇAMENTO':add('orc48','Orçamento enviado → ligar em 48h','FOLLOW-UP','Ligar para confirmar recebimento e fechar o orçamento',2);break;
+    case 'COMPRA':add('forn','Peça solicitada → confirmar envio com fornecedor amanhã','FOLLOW-UP','Confirmar envio/rastreio com fornecedor',1,'TERCEIRO');break;
+    case 'INSTALAÇÃO':case 'MANUTENÇÃO':case 'ATENDIMENTO':add('rel','Serviço concluído → enviar relatório e cobrança','COBRANÇA','Enviar relatório técnico e cobrança',1);break;
+    case 'COBRANÇA':add('pos7','Pagamento recebido → pós-venda em 7 dias','PÓS-VENDA','Pós-venda: verificar satisfação e oferecer preventiva',7);break;
+    case 'VISITA COMERCIAL':add('orcv','Visita feita → enviar orçamento em 2 dias','ORÇAMENTO','Enviar orçamento da visita',2);break;
+    case 'PROSPECÇÃO':add('vis','Prospecção → agendar visita comercial','VISITA COMERCIAL','Visita comercial de apresentação',7);break;
+    case 'REUNIÃO':add('ata','Reunião → enviar resumo e próximos passos amanhã','FOLLOW-UP','Enviar resumo da reunião e próximos passos',1);break;
+    case 'ENTREGA':add('rec','Entrega feita → confirmar recebimento em 2 dias','PÓS-VENDA','Confirmar recebimento e satisfação',2);break;
+    case 'PÓS-VENDA':add('prev','Pós-venda → manutenção preventiva em 90 dias','MANUTENÇÃO','Manutenção preventiva',90);break;
+    case 'VENCIMENTO':add('ren','Vencimento tratado → revisar próximo vencimento','VENCIMENTO','Revisar próximo vencimento',335);break;
+    default:add('fu7','Follow-up em 7 dias','FOLLOW-UP','Follow-up',7);
+  }
+  add('ligue','Cliente pediu "me ligue mês que vem" → retorno automático','RETORNO AO CLIENTE','Retornar ligação (cliente pediu no mês que vem)',0,'MIM',1);
+  add('l48','Ligar em 48h','FOLLOW-UP','Ligar para acompanhar',2);
+  add('rel2','Enviar relatório e cobrança amanhã','COBRANÇA','Enviar relatório técnico e cobrança',1);
+  add('pv7','Pós-venda em 7 dias','PÓS-VENDA','Pós-venda: verificar satisfação',7);
+  add('fa','Confirmar envio com fornecedor amanhã','FOLLOW-UP','Confirmar envio com fornecedor',1,'TERCEIRO');
+  return L;
+}
+const EV_FROM_ITEM={'ORÇAMENTO':'ORÇAMENTO ENVIADO','COBRANÇA':'PAGAMENTO','VENCIMENTO':'PAGAMENTO','INSTALAÇÃO':'SERVIÇO','MANUTENÇÃO':'SERVIÇO','ATENDIMENTO':'SERVIÇO','COMPRA':'COMPRA','ENTREGA':'ENTREGA','VISITA COMERCIAL':'CONVERSA','REUNIÃO':'CONVERSA','FOLLOW-UP':'CONVERSA','RETORNO AO CLIENTE':'CONVERSA','PÓS-VENDA':'CONVERSA','PROSPECÇÃO':'PRIMEIRO CONTATO','OUTRO':'CONVERSA'};
+const PRESETS=[
+  ['Entregou antes do prazo','COMPROMISSOS','POS',2,'ENTREGA'],['Entregou no prazo','COMPROMISSOS','POS',1,'ENTREGA'],['Atrasou entrega','COMPROMISSOS','NEG',1,'ENTREGA'],['Atraso grave / não entregou','COMPROMISSOS','NEG',3,'ATRASO'],['Cumpriu o combinado','COMPROMISSOS','POS',1,'PROMESSA'],['Faltou/desmarcou em cima da hora','COMPROMISSOS','NEG',2,'ATRASO'],
+  ['Pagou em dia','FINANCEIRO','POS',1,'PAGAMENTO'],['Pagou antecipado','FINANCEIRO','POS',2,'PAGAMENTO'],['Pagou com atraso','FINANCEIRO','NEG',1,'PAGAMENTO'],['Pagou após 3 cobranças','FINANCEIRO','NEG',2,'PAGAMENTO'],['Não pagou','FINANCEIRO','NEG',3,'ATRASO'],
+  ['Respondeu rápido','COMUNICACAO','POS',1,'CONVERSA'],['Demorou a responder','COMUNICACAO','NEG',1,'CONVERSA'],['Sumiu / não responde','COMUNICACAO','NEG',2,'CONVERSA'],
+  ['Serviço bem executado','OPERACIONAL','POS',1,'SERVIÇO'],['Elogiado pelo cliente','OPERACIONAL','POS',2,'ELOGIO'],['Retrabalho / problema','OPERACIONAL','NEG',2,'PROBLEMA'],
+  ['Foi transparente sobre problema','RECIPROCIDADE','POS',2,'NEGOCIAÇÃO'],['Indicou cliente / ajudou','RECIPROCIDADE','POS',1,'ELOGIO'],['Omitiu informação','RECIPROCIDADE','NEG',2,'PROBLEMA']
+];
+
+/* ---------- PARSER DE COMANDO RÁPIDO (regras pt-BR) ---------- */
+function norm(s){let o='';for(const ch of s){const n=ch.normalize('NFD').replace(/[\u0300-\u036f]/g,'');o+=(n.length===1?n:ch).toLowerCase();}return o;}
+function escRe(s){return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');}
+function lev(a,b){if(Math.abs(a.length-b.length)>1)return 9;const m=[];for(let i=0;i<=a.length;i++){m[i]=[i];}for(let j=1;j<=b.length;j++)m[0][j]=j;for(let i=1;i<=a.length;i++)for(let j=1;j<=b.length;j++)m[i][j]=Math.min(m[i-1][j]+1,m[i][j-1]+1,m[i-1][j-1]+(a[i-1]===b[j-1]?0:1));return m[a.length][b.length];}
+const WEEK={domingo:0,segunda:1,terca:2,quarta:3,quinta:4,sexta:5,sabado:6};
+const NAME_STOP=new Set(['posto','auto','ltda','me','eireli','sa','de','da','do','das','dos','e','comercio','combustiveis','combustivel','transportes','transportadora','industria','cia','grupo','exemplo','distribuidora','servicos','tecnico','autonomo','sistemas','automacao','cerealista','norte','sul','centro','parana']);
+function cutSpan(st,idx,len){st.t=st.t.slice(0,idx)+' '.repeat(len)+st.t.slice(idx+len);st.n=st.n.slice(0,idx)+' '.repeat(len)+st.n.slice(idx+len);}
+function take(st,re){re.lastIndex=0;const m=re.exec(st.n);if(!m)return null;const orig=st.t.substr(m.index,m[0].length);cutSpan(st,m.index,m[0].length);return {m,orig,index:m.index};}
+function findEnd(n,from,stops){let end=n.length;for(const re of stops){re.lastIndex=from;const m=re.exec(n);if(m&&m.index<end)end=m.index;}return end;}
+function matchContacts(n){
+  const out=[];const words=(n.match(/[a-z0-9]{4,}/g)||[]);
+  for(const c of S.contacts){let best=0,span=null;
+    for(const name of [c.fantasia,c.nome,c.pessoaContato].filter(Boolean)){
+      const nn=norm(name).replace(/\(.*?\)/g,' ').replace(/[^a-z0-9 ]/g,' ').replace(/\s+/g,' ').trim();if(nn.length<3)continue;
+      const m=new RegExp('\\b'+escRe(nn)+'\\b').exec(n);if(m){const sc=100+nn.length;if(sc>best){best=sc;span=[m.index,nn.length];}continue;}
+      const toks=nn.split(' ').filter(t=>t.length>=3&&!NAME_STOP.has(t));let sc=0,sp=null;
+      for(const tk of toks){const m2=new RegExp('\\b'+escRe(tk)+'\\b').exec(n);if(m2){sc+=tk.length*10;if(!sp)sp=[m2.index,tk.length];}
+        else if(tk.length>=5){const w=words.find(w=>lev(w,tk)<=1);if(w){sc+=tk.length*6;if(!sp){const i=n.indexOf(w);sp=[i,w.length];}}}}
+      if(sc>best){best=sc;span=sp;}
+    }
+    if(best>0)out.push({c,score:best,span});
+  }
+  return out.sort((a,b)=>b.score-a.score);
+}
+function parseCommand(input,refDate){
+  const T=refDate||todayStr();const st={t:' '+input.trim()+' ',n:''};st.n=norm(st.t);
+  const r={raw:input,tipo:null,data:null,hora:'',materiais:[],checklist:[],condicao:'',valor:0,contatoId:null,candidatos:[],novoContato:'',descricao:'',direcao:'MIM',notas:[]};
+  // 1) materiais: "levar ..." até verificar/ponto
+  let mi=/\blevar\b/.exec(st.n);
+  if(mi){const end=findEnd(st.n,mi.index,[/[.;]\s/g,/[.;]?\s*$/g,/,?\s*(?:e\s+)?(?:verificar|conferir|checar)\b/g]);const seg=st.t.slice(mi.index+5,end);
+    r.materiais=seg.split(/\s*,\s*|\s+e\s+/).map(s=>s.trim().replace(/^(o|a|os|as)\s+/i,'')).filter(Boolean);
+    let s0=mi.index;const pre=/(,\s*|\s+e\s+)$/.exec(st.n.slice(0,s0));if(pre)s0-=pre[0].length;cutSpan(st,s0,end-s0);}
+  // 2) checklist: "verificar/conferir/checar ..."
+  let ci=/(,\s*|\s+e\s+)?\b(verificar|conferir|checar)\b/.exec(st.n);
+  if(ci){const vs=ci.index+(ci[1]?ci[1].length:0);const end=findEnd(st.n,vs,[/[.;]\s/g,/[.;]?\s*$/g,/,?\s*(?:e\s+)?levar\b/g]);const seg=st.t.slice(vs,end).trim();
+    r.checklist=seg.split(/\s*,\s*(?=verificar|conferir|checar)|\s+e\s+(?=verificar|conferir|checar)/i).map(s=>s.trim().replace(/[.;]+$/,'')).filter(Boolean);cutSpan(st,ci.index,end-ci.index);}
+  // 3) condição
+  let cd=take(st,/(?:^|[\s,])(?:se|caso)\s+(?:ele|ela|eles|elas|o cliente|a cliente|nao|ainda|o|a)\b[^,.;]*/);
+  if(cd)r.condicao=cd.orig.replace(/^[\s,]+/,'').trim();
+  // 4) valor
+  let vm=take(st,/r\$\s*(\d{1,3}(?:\.\d{3})+(?:,\d{1,2})?|\d+(?:,\d{1,2})?)(\s*mil)?/);
+  if(vm){r.valor=parseFloat(vm.m[1].replace(/\./g,'').replace(',','.'))*(vm.m[2]?1000:1);}
+  else{vm=take(st,/\b(\d+(?:[.,]\d+)?)\s*(mil\s*)?reais\b/);if(vm)r.valor=parseFloat(vm.m[1].replace(',','.'))*(vm.m[2]?1000:1);}
+  // 5) horário
+  let hm=take(st,/\b(?:as|a partir das|ate as)\s+(\d{1,2})(?:\s*(?:h|:)\s*(\d{2})?\s*(?:h|hs|horas)?|\s*horas|(?=\s*(?:[,.;]|$)))/);
+  if(!hm)hm=take(st,/\b(\d{1,2})(?::(\d{2})|h(\d{2})?)(?=\W|$)/);
+  if(hm){const h=+hm.m[1],mm=+(hm.m[2]||hm.m[3]||0);if(h<=23&&mm<=59)r.hora=pad(h)+':'+pad(mm);}
+  // 6) data
+  const PREP='(?:(?:na|no|para|pra|ate|a partir de|nesta|nessa|esta|essa)\\s+)?';
+  const dRules=[
+    [new RegExp('\\b'+PREP+'(?:dia\\s+)?(\\d{1,2})/(\\d{1,2})(?:/(\\d{2,4}))?\\b'),m=>{let y=m[3]?+m[3]:parseDs(T).getFullYear();if(y<100)y+=2000;const d=+m[1],mo=+m[2];if(d<1||d>31||mo<1||mo>12)return null;let s=y+'-'+pad(mo)+'-'+pad(d);if(!m[3]&&s<T)s=(y+1)+'-'+pad(mo)+'-'+pad(d);return s;}],
+    [new RegExp('\\b'+PREP+'depois de amanha\\b'),()=>addDays(T,2)],
+    [new RegExp('\\b'+PREP+'amanha\\b'),()=>addDays(T,1)],
+    [new RegExp('\\b'+PREP+'hoje\\b'),()=>T],
+    [/\b(?:em|daqui a|daqui)\s+(\d{1,3})\s+dias?\b/,m=>addDays(T,+m[1])],
+    [/\b(?:em|daqui a)\s+(\d{1,2})\s+semanas?\b/,m=>addDays(T,7*m[1])],
+    [new RegExp('\\b'+PREP+'(?:semana que vem|proxima semana)\\b'),()=>{const wd=parseDs(T).getDay();return addDays(T,((8-wd)%7)||7);}],
+    [new RegExp('\\b'+PREP+'(?:mes que vem|proximo mes)\\b'),()=>addMonths(T,1)],
+    [new RegExp('\\b'+PREP+'(?:(?:proxim[ao]|que vem)\\s+)?(segunda|terca|quarta|quinta|sexta|sabado|domingo)(?:[- ]feira)?(?:\\s+que vem)?\\b'),m=>{const wd=parseDs(T).getDay();let dlt=(WEEK[m[1]]-wd+7)%7;if(dlt===0)dlt=7;return addDays(T,dlt);}],
+    [new RegExp('\\b'+PREP+'dia\\s+(\\d{1,2})\\b'),m=>{const d=+m[1];if(d<1||d>31)return null;const b=parseDs(T);let s=b.getFullYear()+'-'+pad(b.getMonth()+1)+'-'+pad(d);if(s<T)s=addMonths(s,1);return s;}]
+  ];
+  for(const [re,fn] of dRules){const m=re.exec(st.n);if(m){const v=fn(m);if(v){r.data=v;cutSpan(st,m.index,m[0].length);break;}}}
+  if(!r.data){r.data=T;r.notas.push('Sem data no comando: assumido HOJE.');}
+  // 7) tipo por verbos (a primeira ocorrência vence)
+  const V=[['COBRANÇA',/\b(cobrar|cobranca|cobre)\b/],['INSTALAÇÃO',/\b(instalar|instalacao|instala)\b/],['MANUTENÇÃO',/\b(manutencao|consertar|reparar|trocar|preventiva)\b/],['VISITA COMERCIAL',/\b(visitar|visita)\b/],['ORÇAMENTO',/\b(orcamento|orcar|cotar|cotacao)\b/],['COMPRA',/\b(comprar|compra|encomendar|pedir peca|pedido)\b/],['ENTREGA',/\b(entregar|entrega)\b/],['RETORNO AO CLIENTE',/\b(retornar|retorno|me ligue|me liga)\b/],['FOLLOW-UP',/\b(ligar|follow|acompanhar|lembrar)\b/],['REUNIÃO',/\b(reuniao|reunir)\b/],['ATENDIMENTO',/\b(atender|atendimento|chamado)\b/],['PÓS-VENDA',/\b(pos-venda|pos venda)\b/],['PROSPECÇÃO',/\b(prospectar|prospeccao)\b/],['VENCIMENTO',/\b(vencimento|vence|boleto|licenca|alvara|pagar)\b/]];
+  let bi=1e9;for(const [tp,re] of V){const m=re.exec(st.n);if(m&&m.index<bi){bi=m.index;r.tipo=tp;}}
+  if(!r.tipo&&r.condicao&&/pag/.test(norm(r.condicao)))r.tipo='COBRANÇA';
+  if(!r.tipo)r.tipo=r.materiais.length?'INSTALAÇÃO':'OUTRO';
+  // 8) contato
+  const cands=matchContacts(st.n);
+  if(cands.length){const top=cands[0];r.contatoId=top.c.id;r.candidatos=cands.slice(0,5).map(x=>({id:x.c.id,nome:cName(x.c),score:x.score}));if(cands[1]&&cands[1].score===top.score)r.notas.push('Contato ambíguo: confirme na lista.');
+    if(top.span){let [i,l]=top.span;const pre=/(?:\b(?:no|na|do|da|com|para|pra|pro|ao|o|a|em|de)\s+)$/.exec(st.n.slice(0,i));if(pre){i-=pre[0].length;l+=pre[0].length;}r._matchTxt=st.t.substr(i,l).trim();cutSpan(st,i,l);}}
+  else{const mm=/\b(?:no|na|do|da|com|para|pra|pro|ao)\s+((?:[A-ZÁÉÍÓÚÂÊÔÃÕÇ][\wÀ-ú'&.-]*\s?){1,4})/.exec(st.t);
+    let nm=mm?mm[1]:null;if(mm){cutSpan(st,mm.index,mm[0].length);}
+    if(!nm){const re=/[A-ZÁÉÍÓÚÂÊÔÃÕÇ][\wÀ-ú'&.-]*(?:\s+[A-ZÁÉÍÓÚÂÊÔÃÕÇ][\wÀ-ú'&.-]*)*/g;let m;const firstWord=(/\S+/.exec(st.t)||{index:-1}).index;while((m=re.exec(st.t))){let s0=m.index,tx=m[0];if(s0===firstWord){const sp=tx.search(/\s/);if(sp<0)continue;s0+=sp;tx=tx.slice(sp);const lead=tx.length-tx.trimStart().length;s0+=lead;tx=tx.trim();}nm=tx;cutSpan(st,s0,tx.length);break;}}
+    if(nm){r.novoContato=nm.trim();r.notas.push('Contato "'+r.novoContato+'" não encontrado: será oferecido criar.');}}
+  // 9) descrição = o que sobrou
+  let d=st.t.replace(/\s+/g,' ').trim().replace(/^[,;.\-\s]+|[,;.\-\s]+$/g,'').replace(/\s+(e|no|na|do|da|com|para|de)$/i,'').trim();
+  if(/^(me ligue|me liga)$/i.test(d))d='Retornar ligação';
+  const cn=r.contatoId?cName(contact(r.contatoId)):r.novoContato;
+  if(d.split(' ').length<2&&(r._matchTxt||cn))d=(d?d+' ':'')+(r._matchTxt||cn);
+  r.descricao=d?d.charAt(0).toUpperCase()+d.slice(1):(r.tipo+(cn?' — '+cn:''));
+  const c=r.contatoId?contact(r.contatoId):null;
+  if(['COMPRA','ENTREGA'].includes(r.tipo)&&(isSupplier(c)||/aguardar|chegar/.test(norm(input))))r.direcao='TERCEIRO';
+  const nx=defaultNext(r.tipo,r.data,r.descricao,r.condicao);r.proximaAcao=nx.a;r.prazoProxima=nx.p;
+  if(r.materiais.length&&['INSTALAÇÃO','MANUTENÇÃO','ATENDIMENTO'].includes(r.tipo))r.proximaAcao='Confirmar materiais separados ('+r.materiais.join(', ')+') na véspera';
+  return r;
+}
+function itemFromParse(p){return normalizeItem({tipo:p.tipo,data:p.data,hora:p.hora,contatoId:p.contatoId,descricao:p.descricao,valor:p.valor,materiais:p.materiais,checklist:p.checklist.map(t=>({t,ok:false})),condicao:p.condicao,proximaAcao:p.proximaAcao,prazoProxima:p.prazoProxima,direcao:p.direcao,status:'PENDENTE',_novoContato:p.novoContato});}
+function normalizeItem(o){return Object.assign({id:uid(),data:todayStr(),hora:'',contatoId:null,local:'',tipo:'OUTRO',responsavel:S.settings.responsaveis[0]||'',descricao:'',valor:0,status:'PENDENTE',materiais:[],materiaisOk:false,checklist:[],condicao:'',proximaAcao:'',prazoProxima:'',direcao:'MIM',riscoPerda:0,criadoEm:new Date().toISOString(),historico:[]},o);}
+
+/* ---------- DADOS DE EXEMPLO (FICTÍCIOS) ---------- */
+function loadSample(){
+  const T=todayStr(),rel=n=>addDays(T,n);
+  S=emptyState();S.settings.sample=true;S.settings.responsaveis=['Comercial','Técnico de campo','Compras'];
+  const C=(id,o)=>{S.contacts.push(Object.assign({id,sample:true,uf:'PR',primeiroContato:'',origem:'',responsavel:'Comercial',valorImportancia:3,valorPotencial:0,obs:'DADO FICTÍCIO DE EXEMPLO — pode apagar.'},o));};
+  C('c1',{tipo:'CLIENTE',nome:'Auto Posto Energy Ltda (EXEMPLO)',fantasia:'Posto Energy',doc:'00.000.000/0001-01',cidade:'Londrina',pessoaContato:'Marcos Lima',cargo:'Gerente',telefone:'(43) 99999-0001',whatsapp:'43999990001',email:'marcos@exemplo.invalid',segmento:'Posto de combustível',origem:'Indicação',primeiroContato:rel(-400),valorImportancia:5,valorPotencial:85000});
+  C('c2',{tipo:'CLIENTE',nome:'Rota Norte Transportes (EXEMPLO)',fantasia:'Rota Norte',doc:'00.000.000/0001-02',cidade:'Cambé',pessoaContato:'João Batista',cargo:'Gestor de frota',telefone:'(43) 99999-0002',whatsapp:'43999990002',segmento:'Frota própria',origem:'Prospecção',primeiroContato:rel(-380),valorImportancia:4,valorPotencial:40000});
+  C('c3',{tipo:'PROSPECT',nome:'TRR Arapongas Combustíveis (EXEMPLO)',fantasia:'TRR Arapongas',cidade:'Arapongas',pessoaContato:'Fernanda Rocha',cargo:'Compras',whatsapp:'43999990003',segmento:'TRR',origem:'Feira',primeiroContato:rel(-150),valorImportancia:4,valorPotencial:120000});
+  C('c4',{tipo:'FORNECEDOR',nome:'Distribuidora PetroPeças Sul (EXEMPLO)',fantasia:'PetroPeças Sul',cidade:'Curitiba',pessoaContato:'Cláudio',cargo:'Vendedor',whatsapp:'41999990004',segmento:'Peças: bicos, mangueiras, breakaways, swivels',responsavel:'Compras',valorImportancia:3});
+  C('c5',{tipo:'FABRICANTE',nome:'Company Automação (EXEMPLO)',fantasia:'Company',cidade:'Curitiba',pessoaContato:'Suporte Company',whatsapp:'41999990005',segmento:'Réguas e sensores de tanque',responsavel:'Compras',valorImportancia:4});
+  C('c6',{tipo:'TÉCNICO',nome:'Rafael Souza — Técnico Autônomo (EXEMPLO)',fantasia:'Rafael (técnico)',cidade:'Rolândia',pessoaContato:'Rafael Souza',whatsapp:'43999990006',segmento:'Instalação e manutenção de bombas',responsavel:'Técnico de campo',valorImportancia:3});
+  C('c7',{tipo:'CLIENTE',nome:'Posto Trevo Ibiporã (EXEMPLO)',fantasia:'Posto Trevo',cidade:'Ibiporã',pessoaContato:'Sônia',cargo:'Proprietária',whatsapp:'43999990007',segmento:'Posto de combustível',primeiroContato:rel(-260),valorImportancia:3,valorPotencial:25000});
+  C('c8',{tipo:'CLIENTE',nome:'Cerealista Norte Paraná (EXEMPLO)',fantasia:'Cerealista Norte PR',cidade:'Apucarana',pessoaContato:'Paulo',cargo:'Manutenção',whatsapp:'43999990008',segmento:'Indústria — tanque próprio',primeiroContato:rel(-300),valorImportancia:3,valorPotencial:30000});
+  C('c9',{tipo:'CLIENTE',nome:'Posto Cambé Centro (EXEMPLO)',fantasia:'Posto Cambé Centro',cidade:'Cambé',pessoaContato:'Luiz',whatsapp:'43999990009',segmento:'Posto de combustível',primeiroContato:rel(-200),valorImportancia:2,valorPotencial:12000});
+  C('c10',{tipo:'PRESTADOR DE SERVIÇO',nome:'Içamentos Maringá (EXEMPLO)',fantasia:'Içamentos Maringá',cidade:'Maringá',pessoaContato:'Beto',whatsapp:'44999990010',segmento:'Munck / içamento de tanques',valorImportancia:2});
+  const E=[]; const ev=(c,d,tipo,descricao,dim,res,sev,valor)=>E.push({contatoId:c,data:rel(d),tipo,descricao,dimensao:dim||null,resultado:res||null,severidade:sev||1,valor:valor||0,sample:true});
+  ev('c1',-400,'PRIMEIRO CONTATO','Indicação do Posto Trevo');ev('c1',-300,'ORÇAMENTO ENVIADO','Sensores de nível 3 tanques',null,null,1,12000);ev('c1',-290,'ORÇAMENTO APROVADO','Aprovou sensores',null,null,1,12000);
+  ev('c1',-270,'SERVIÇO','Instalação de sensores concluída sem pendências','OPERACIONAL','POS',1);ev('c1',-240,'PAGAMENTO','Pagou em dia','FINANCEIRO','POS',1,12000);ev('c1',-150,'PAGAMENTO','Pagou em dia (manutenção)','FINANCEIRO','POS',1,1800);
+  ev('c1',-40,'CONVERSA','Respondeu rápido e enviou fotos da ilha 3','COMUNICACAO','POS',1);ev('c1',-20,'ORÇAMENTO ENVIADO','Réguas Company para 6 bicos',null,null,1,18500);ev('c1',-10,'ORÇAMENTO APROVADO','Aprovou réguas Company',null,null,1,18500);ev('c1',-270,'PROMESSA','Liberou a pista no horário combinado','COMPROMISSOS','POS',1);ev('c1',-100,'PROMESSA','Cumpriu o combinado na parada da ilha','COMPROMISSOS','POS',1);ev('c1',-150,'CONVERSA','Avisou com antecedência da troca de gerente','COMUNICACAO','POS',1);ev('c1',-9,'ELOGIO','Indicou a IN\'TEGRA para outro posto','RECIPROCIDADE','POS',1);
+  ev('c2',-380,'PRIMEIRO CONTATO','Visita de prospecção na garagem');ev('c2',-200,'SERVIÇO','Manutenção de bomba de abastecimento interno','OPERACIONAL','POS',1);ev('c2',-180,'PAGAMENTO','Pagou após 3 cobranças','FINANCEIRO','NEG',2,3200);
+  ev('c2',-120,'PAGAMENTO','Pagou com 12 dias de atraso','FINANCEIRO','NEG',1,2100);ev('c2',-60,'CONVERSA','Demorou 5 dias para responder orçamento','COMUNICACAO','NEG',1);ev('c2',-30,'PROMESSA','Prometeu pagar NF 1432 até dia 25');ev('c2',-200,'ATRASO','Não liberou a bomba no dia combinado (técnico perdeu a viagem)','COMPROMISSOS','NEG',2);ev('c2',-5,'PROMESSA','Quebrou a promessa de pagar dia 25','COMPROMISSOS','NEG',2);ev('c2',-5,'ATRASO','Boleto NF 1432 vencido, não pagou na data prometida','FINANCEIRO','NEG',2,4800);
+  ev('c3',-150,'PRIMEIRO CONTATO','Contato na feira do setor em Londrina');ev('c3',-120,'ORÇAMENTO ENVIADO','Monitoramento de tanques — 3 unidades',null,null,1,7800);ev('c3',-100,'ORÇAMENTO PERDIDO','Fechou com concorrente por preço','COMUNICACAO','NEU',1);
+  ev('c3',-70,'ORÇAMENTO ENVIADO','Mangueiras e bicos para 4 caminhões',null,null,1,5200);ev('c3',-55,'ORÇAMENTO PERDIDO','Adiou compra');ev('c3',-14,'CONVERSA','Pediu proposta de automação completa','COMUNICACAO','POS',1);ev('c3',-12,'ORÇAMENTO ENVIADO','Automação completa da base',null,null,1,22000);
+  ev('c4',-200,'ENTREGA','Entregou no prazo','COMPROMISSOS','POS',1);ev('c4',-150,'ENTREGA','Atrasou 4 dias (bicos 3/4)','COMPROMISSOS','NEG',1);ev('c4',-90,'ENTREGA','Atrasou 10 dias e mandou peça errada','COMPROMISSOS','NEG',2);ev('c4',-90,'CONVERSA','Não avisou do atraso','COMUNICACAO','NEG',1);
+  ev('c4',-45,'ENTREGA','Atrasou 3 dias (swivels)','COMPROMISSOS','NEG',1);ev('c4',-44,'NEGOCIAÇÃO','Assumiu o frete da troca','RECIPROCIDADE','POS',1);ev('c4',-15,'ENTREGA','Entregou no prazo','COMPROMISSOS','POS',1);
+  ev('c5',-100,'COMPRA','Réguas entregues antes do prazo','COMPROMISSOS','POS',2);ev('c5',-60,'CONVERSA','Suporte respondeu no mesmo dia','COMUNICACAO','POS',1);ev('c5',-58,'NEGOCIAÇÃO','Explicou abertamente mudança de preço','RECIPROCIDADE','POS',2);
+  ev('c6',-160,'SERVIÇO','Instalação limpa e organizada','OPERACIONAL','POS',1);ev('c6',-160,'ATRASO','Chegou 2h atrasado no cliente','COMPROMISSOS','NEG',1);ev('c6',-110,'SERVIÇO','Elogiado pelo cliente','OPERACIONAL','POS',2);ev('c6',-110,'ATRASO','Atrasou meio dia','COMPROMISSOS','NEG',1);
+  ev('c6',-50,'SERVIÇO','Troca de mangueiras sem retrabalho','OPERACIONAL','POS',1);ev('c6',-50,'ATRASO','Atrasou 1 dia a entrega do serviço','COMPROMISSOS','NEG',2);ev('c6',-20,'SERVIÇO','Manutenção de breakaways ok','OPERACIONAL','POS',1);
+  ev('c7',-260,'PRIMEIRO CONTATO','Cliente antigo do setor');ev('c7',-210,'PAGAMENTO','Pagou em dia','FINANCEIRO','POS',1,2500);ev('c7',-150,'PAGAMENTO','Pagou em dia','FINANCEIRO','POS',1,1900);ev('c7',-95,'SERVIÇO','Troca de mangueiras e bicos','OPERACIONAL','POS',1);
+  ev('c7',-90,'PAGAMENTO','Pagou em dia','FINANCEIRO','POS',1,3100);ev('c7',-95,'PROMESSA','Cumpriu o combinado (liberou a ilha às 6h)','COMPROMISSOS','POS',1);ev('c7',-90,'CONVERSA','Responde sempre no mesmo dia','COMUNICACAO','POS',1);ev('c7',-60,'ELOGIO','Indicou o Posto Energy','RECIPROCIDADE','POS',2);ev('c7',-30,'PAGAMENTO','Pagou antecipado','FINANCEIRO','POS',2,2300);
+  ev('c8',-300,'PRIMEIRO CONTATO','Contato via site');ev('c8',-95,'SERVIÇO','Calibração do medidor do tanque','OPERACIONAL','POS',1);ev('c8',-80,'CONVERSA','Falou em ampliar a base em 2027');
+  ev('c9',-200,'PRIMEIRO CONTATO','Visita espontânea');ev('c9',-75,'ORÇAMENTO ENVIADO','Troca de 4 breakaways e 4 swivels',null,null,1,3500);
+  E.sort((a,b)=>a.data<b.data?-1:a.data>b.data?1:0);
+  for(const e of E){const sub=S.events.filter(x=>x.contatoId===e.contatoId);addEvent(e,{subset:e.dimensao?sub:null,logDate:e.data});}
+  const I=(o)=>{const it=normalizeItem(Object.assign({sample:true},o));hist(it,'Criado','dados de exemplo');S.items.push(it);return it;};
+  I({tipo:'COBRANÇA',contatoId:'c2',data:rel(-2),descricao:'Cobrar boleto NF 1432 — manutenção de bombas',valor:4800,proximaAcao:'Ligar para João e enviar 2ª via',prazoProxima:rel(-1),direcao:'TERCEIRO',riscoPerda:2,responsavel:'Comercial'});
+  const pc=I({tipo:'COMPRA',contatoId:'c4',data:rel(1),descricao:'Pedido: 10 bicos automáticos 3/4 + 4 swivels',valor:3900,status:'AGUARDANDO TERCEIRO',direcao:'TERCEIRO',proximaAcao:'Confirmar rastreio com Cláudio',prazoProxima:T,responsavel:'Compras'});
+  I({tipo:'MANUTENÇÃO',contatoId:'c2',data:rel(2),hora:'08:30',local:'Garagem Rota Norte — Cambé',descricao:'Manutenção corretiva bomba 2 (vazamento no swivel)',valor:1600,status:'AGUARDANDO TERCEIRO',materiais:['2 swivels 3/4'],proximaAcao:'Aguardar chegada dos swivels e confirmar com João',prazoProxima:rel(1),dependeDe:null,responsavel:'Técnico de campo'});
+  I({tipo:'INSTALAÇÃO',contatoId:'c1',data:T,hora:'14:00',local:'Posto Energy — Av. exemplo, Londrina',descricao:'Instalar sensor de nível no tanque 2',valor:6500,status:'CONFIRMADO',materiais:['1 sensor magnetostritivo','20 m de cabo blindado'],materiaisOk:true,checklist:[{t:'verificar aterramento',ok:false},{t:'testar leitura no console',ok:false}],proximaAcao:'Enviar relatório de instalação',prazoProxima:T,responsavel:'Técnico de campo'});
+  I({tipo:'ORÇAMENTO',contatoId:'c1',data:rel(1),descricao:'Orçamento: 4 mangueiras + 4 breakaways para ilha 3',valor:3900,proximaAcao:'Montar orçamento e enviar por e-mail',prazoProxima:rel(1),responsavel:'Comercial'});
+  I({tipo:'VISITA COMERCIAL',contatoId:'c3',data:rel(3),hora:'10:00',local:'Base TRR — Arapongas',descricao:'Apresentar telemetria de tanques na base',proximaAcao:'Confirmar visita com Fernanda (véspera)',prazoProxima:rel(2),riscoPerda:2,responsavel:'Comercial'});
+  I({tipo:'ATENDIMENTO',contatoId:'c7',data:rel(-3),descricao:'Chamado: bico gotejando na bomba 4',valor:450,proximaAcao:'Ligar para Sônia e reagendar técnico',prazoProxima:rel(-2),responsavel:'Técnico de campo'});
+  I({tipo:'COBRANÇA',contatoId:'c7',data:rel(5),descricao:'Receber NF 1450 — troca de filtros',valor:2300,direcao:'TERCEIRO',proximaAcao:'Enviar lembrete 1 dia antes',prazoProxima:rel(4),responsavel:'Comercial'});
+  I({tipo:'PÓS-VENDA',contatoId:'c7',data:T,descricao:'Pós-venda da troca de mangueiras',proximaAcao:'Ligar para Sônia',prazoProxima:T,responsavel:'Comercial'});
+  I({tipo:'REUNIÃO',contatoId:'c5',data:rel(2),hora:'09:00',descricao:'Condições comerciais das réguas para 2027',proximaAcao:'Levantar volume previsto de réguas',prazoProxima:rel(1),responsavel:'Compras'});
+  I({tipo:'MANUTENÇÃO',contatoId:'c7',data:rel(20),descricao:'Manutenção preventiva: filtros e teste de breakaways',valor:1900,proximaAcao:'Agendar horário com Sônia',prazoProxima:rel(15),responsavel:'Técnico de campo'});
+  I({tipo:'VENCIMENTO',data:rel(10),descricao:'Renovar certificado de calibração do medidor padrão',proximaAcao:'Solicitar orçamento ao laboratório',prazoProxima:rel(3),responsavel:'Comercial'});
+  I({tipo:'PROSPECÇÃO',data:rel(6),descricao:'Prospectar frotas em Rolândia (lista da associação comercial)',proximaAcao:'Separar 10 empresas-alvo',prazoProxima:rel(4),responsavel:'Comercial'});
+  I({tipo:'INSTALAÇÃO',contatoId:'c1',data:rel(12),descricao:'Instalar réguas Company — 6 bicos',valor:18500,materiais:['6 réguas Company','6 kits de fixação'],proximaAcao:'Confirmar data de entrega das réguas com a Company',prazoProxima:rel(5),responsavel:'Técnico de campo'});
+  // concluídos (histórico)
+  const done=(o,atraso)=>{const it=I(Object.assign({status:'CONCLUÍDO',proximaAcao:'—',prazoProxima:o.data},o));it.concluidoEm=addDays(o.data,atraso||0);hist(it,'CONCLUÍDO','exemplo');};
+  done({tipo:'INSTALAÇÃO',contatoId:'c1',data:rel(-270),descricao:'Instalar sensores de nível — 3 tanques',valor:12000});done({tipo:'COBRANÇA',contatoId:'c1',data:rel(-240),descricao:'Receber sensores',valor:12000});
+  done({tipo:'MANUTENÇÃO',contatoId:'c2',data:rel(-200),descricao:'Manutenção bomba interna',valor:3200},1);done({tipo:'COBRANÇA',contatoId:'c2',data:rel(-190),descricao:'Receber manutenção',valor:3200},10);
+  done({tipo:'ORÇAMENTO',contatoId:'c3',data:rel(-12),descricao:'Enviar proposta de automação',valor:22000});done({tipo:'ATENDIMENTO',contatoId:'c7',data:rel(-95),descricao:'Troca de mangueiras e bicos',valor:3100});
+  refreshAuto();save();
+}
+
+/* ============ UI ============ */
+const $=s=>document.querySelector(s);
+const h=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let F={status:'ABERTOS',tipo:'',prio:'',dir:'',dia:'',q:''};let CF={q:'',tipo:''};
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(toast._t);toast._t=setTimeout(()=>t.classList.remove('on'),2600);}
+function route(){const hs=(location.hash||'#hoje').slice(1).split('/');return {name:hs[0]||'hoje',id:hs[1]};}
+function go(r){location.hash=r;}
+function iciBadge(cid,big){if(!cid)return '';const r=iciCompute(cid);const b=iciBand(r?r.score:null);return `<span class="ici ${b.k}" title="ICI — Índice de Credibilidade IN'TEGRA">ICI ${r?r.score:'—'} · ${b.l}</span>`;}
+function stars(n){n=+n||0;return '<span class="stars">'+'★'.repeat(n)+'<span style="opacity:.25">'+'★'.repeat(5-n)+'</span></span>';}
+function vcBadge(c){if(!c)return '';return `<span class="vc" title="VALOR COMERCIAL">VC ${stars(c.valorImportancia)}${c.valorPotencial?' '+brl(c.valorPotencial):''}</span>`;}
+function contactPrio(cid){let best=null;for(const it of S.items)if(it.contatoId===cid&&isOpen(it)){const p=priority(it);if(!best||p.score>best.score)best=p;}return best;}
+function sel(name,opts,val,extra){return `<select name="${name}" ${extra||''}>`+opts.map(o=>{const [v,l]=Array.isArray(o)?o:[o,o];return `<option value="${h(v)}"${String(v)===String(val??'')?' selected':''}>${h(l)}</option>`;}).join('')+'</select>';}
+function fld(label,inner){return `<label class="f"><span>${label}</span>${inner}</label>`;}
+
+/* ---------- card de item ---------- */
+function itemCard(it,o={}){
+  const p=priority(it);const c=contact(it.contatoId);const dd=diffDays(todayStr(),it.data);const wa=c?waLink(c.whatsapp,'Olá '+(c.pessoaContato||'')+', aqui é da IN\'TEGRA Fuel.'):null;
+  const stc=it.status.startsWith('AGUARDANDO')?'AGUARDANDO':it.status;const nextLate=isOpen(it)&&it.prazoProxima&&it.prazoProxima<todayStr();
+  return `<div class="card item ${isOpen(it)?p.level:''}" data-open-item="${it.id}">
+  ${o.rank?`<div class="rank">${o.rank}</div>`:''}
+  <div class="row1">${isOpen(it)?`<span class="pb ${p.level}" title="PRIORIDADE">${P_LABEL[p.level]}</span>`:''}<span class="tp">${IT_ICON[it.tipo]||''} ${h(it.tipo)}</span><span class="st ${stc}">${h(it.status)}</span>${isOpen(it)?`<span class="st dir">${it.direcao==='TERCEIRO'?'DEPENDO DE TERCEIRO':'DEPENDE DE MIM'}</span>`:''}</div>
+  <div class="ttl">${h(it.descricao)}</div>
+  <div class="meta"><span>📅 ${fmtD(it.data)}${it.hora?' '+it.hora:''} (${relD(it.data)})</span>${c?`<span>👤 ${h(cName(c))}</span>${iciBadge(c.id)}`:''}${it.valor?`<span>💵 ${brl(it.valor)}</span>`:''}${it.responsavel?`<span>🧑‍🔧 ${h(it.responsavel)}</span>`:''}</div>
+  ${isOpen(it)?`<div class="next ${nextLate?'late':''}">➜ <b>Próxima ação:</b> ${h(it.proximaAcao)} · até ${fmtD(it.prazoProxima)}${nextLate?' (VENCIDA)':''}</div>`:''}
+  ${it.condicao?`<div class="cond">⚑ CONDICIONAL: ${h(it.condicao)}</div>`:''}
+  ${(it.materiais||[]).length?`<div class="meta" style="margin-top:4px">🧰 ${h(it.materiais.join(' · '))} ${it.materiaisOk?'<b style="color:var(--ok)">✓ separados</b>':'<b style="color:var(--p2)">a separar</b>'}</div>`:''}
+  ${o.comp?`<div class="comp">${Object.entries(p.comp).map(([k,v])=>`<span>${k} ${v}</span>`).join('')}<span>= ${p.score}</span></div>`:''}
+  ${isOpen(it)?`<details class="why" data-stop><summary>▸ por quê ${p.level}? (score ${p.score}/100)</summary><table>${p.factors.map(f=>`<tr><td>${h(f[0])}: ${h(f[2])}</td><td class="pts">+${f[1]}</td></tr>`).join('')}</table></details>
+  <div class="acts"><button class="ok" data-act="done" data-id="${it.id}">✓ Concluir</button><button data-act="resched" data-id="${it.id}">⟳ Reprogramar</button>${wa?`<a class="wa" href="${wa}" target="_blank" rel="noopener" data-stop>WhatsApp</a>`:''}<button data-act="event" data-cid="${it.contatoId||''}" data-id="${it.id}">+ Evento</button></div>`:''}
+  </div>`;
+}
+function alertRow(a){return `<div class="alert ${a.sev}" data-alert data-item="${a.itemId||''}" data-cid="${a.contatoId||''}"><span class="sv">${a.sev}</span><div class="tx">${h(a.text)}${a.sub?`<small>${h(a.sub)}</small>`:''}</div>${!a.itemId&&a.contatoId?`<button class="btn sm pri go" data-act="newfor" data-cid="${a.contatoId}" data-kind="${a.kind}">+ agendar</button>`:''}</div>`;}
+function secH(t,n){return `<div class="sec"><h3>${t}</h3>${n!=null?`<span class="n">${n}</span>`:''}<div class="line"></div></div>`;}
+function sampleBanner(){return S.settings.sample?`<div class="sample-banner">⚠ DADOS DE EXEMPLO (FICTÍCIOS) — apenas para demonstração. Apague em ⚙ Configurações → "Apagar tudo".</div>`:'';}
+
+/* ---------- HOJE ---------- */
+function viewHoje(){
+  const T=todayStr();const open=S.items.filter(isOpen).map(i=>({i,p:priority(i)}));const by=(a,b)=>b.p.score-a.p.score;
+  const alerts=allAlerts();
+  let html=`<div class="hero"><h2>HOJE — IN’TEGRA FUEL</h2><div class="d">${fmtDL(T)}</div><div class="motto">NÃO PERCA A DIREÇÃO.</div></div>`;
+  if(!S.contacts.length&&!S.items.length){return html+`<div class="card empty"><b>Agenda vazia.</b>Digite um comando na barra acima (ex.: <i>"Quarta-feira instalar réguas no Posto Energy, levar 2 breakaways 3/4"</i>) ou toque em <b>+</b>.<br><br><button class="btn pri" data-act="sample">Carregar dados de exemplo (fictícios)</button></div>`;}
+  const atras=open.filter(x=>x.i.status==='ATRASADO');const p1=open.filter(x=>x.p.level==='P1');
+  const orcAlerts=alerts.filter(a=>a.kind==='orc_sem_follow');const orcR=orcAlerts.reduce((s,a)=>s+(a.valor||0),0);
+  const receber=open.filter(x=>x.i.tipo==='COBRANÇA').reduce((s,x)=>s+(+x.i.valor||0),0);
+  html+=`<div class="kpis"><div class="kpi red" data-go="agenda/atrasados"><b>${atras.length}</b><span>atrasados</span></div><div class="kpi or" data-go="agenda/p1"><b>${p1.length}</b><span>P1 agora</span></div><div class="kpi yl" data-go="alertas"><b>${brl(orcR)}</b><span>orç. sem follow-up</span></div><div class="kpi gr" data-go="agenda/cobranca"><b>${brl(receber)}</b><span>a receber</span></div></div>`;
+  const top=open.slice().sort(by).slice(0,3);
+  if(top.length)html+=secH('3 prioridades de maior impacto')+`<div class="top3">${top.map((x,k)=>itemCard(x.i,{rank:k+1,comp:true})).join('')}</div>`;
+  const used=new Set(top.map(x=>x.i.id));const pick=pred=>{const r=open.filter(x=>!used.has(x.i.id)&&pred(x.i)).sort(by);r.forEach(x=>used.add(x.i.id));return r;};
+  const dd=i=>diffDays(T,i.data);
+  const S_=[];
+  const atrasL=pick(i=>i.status==='ATRASADO');
+  const atendL=pick(i=>i.data===T&&['ATENDIMENTO','INSTALAÇÃO','MANUTENÇÃO'].includes(i.tipo));
+  const cobrL=pick(i=>['COBRANÇA','VENCIMENTO'].includes(i.tipo)&&dd(i)<=7);
+  const hojeL=pick(i=>i.data===T);
+  const orcL=pick(i=>i.tipo==='ORÇAMENTO'&&dd(i)<=7);
+  const aguardL=pick(i=>['RETORNO AO CLIENTE','FOLLOW-UP','PÓS-VENDA'].includes(i.tipo)&&i.direcao!=='TERCEIRO'&&dd(i)<=3);
+  const fornL=pick(i=>(i.direcao==='TERCEIRO'||isSupplier(contact(i.contatoId)))&&dd(i)<=7);
+  const oporL=pick(i=>['PROSPECÇÃO','VISITA COMERCIAL'].includes(i.tipo)&&dd(i)<=7);
+  const amL=pick(i=>dd(i)===1),d7=pick(i=>dd(i)<=7),d30=pick(i=>dd(i)<=30);
+  const cards=L=>L.map(x=>itemCard(x.i)).join('');
+  if(hojeL.length)html+=secH('Compromissos de hoje',hojeL.length)+cards(hojeL);
+  if(atendL.length)html+=secH('Atendimentos programados',atendL.length)+cards(atendL);
+  const crit=alerts.filter(a=>a.sev==='CRÍTICO'||a.sev==='ALTO');
+  if(crit.length)html+=secH('Alertas críticos',crit.length)+crit.slice(0,6).map(alertRow).join('')+(crit.length>6||alerts.length>crit.length?`<button class="btn sm" data-go="alertas" style="width:100%">ver todos os ${alerts.length} alertas</button>`:'');
+  const semRet=alerts.filter(a=>a.kind==='sem_retorno');
+  if(aguardL.length||semRet.length)html+=secH('Clientes aguardando retorno',aguardL.length+semRet.length)+cards(aguardL)+semRet.map(alertRow).join('');
+  if(orcL.length||orcAlerts.length)html+=secH('Orçamentos para follow-up',orcL.length+orcAlerts.length)+cards(orcL)+orcAlerts.map(alertRow).join('');
+  if(cobrL.length)html+=secH('Pagamentos / cobranças',cobrL.length)+cards(cobrL);
+  if(fornL.length)html+=secH('Fornecedores aguardando ação',fornL.length)+cards(fornL);
+  const opA=alerts.filter(a=>a.kind==='oport_parada');
+  if(oporL.length||opA.length)html+=secH('Oportunidades',oporL.length+opA.length)+cards(oporL)+opA.map(alertRow).join('');
+  if(atrasL.length)html+=secH('Atrasados',atrasL.length)+cards(atrasL);
+  const col=(t,L)=>L.length?`<details class="col"><summary><span>${t}</span><span>${L.length} ▾</span></summary>${cards(L)}</details>`:'';
+  html+=col('AMANHÃ',amL)+col('PRÓXIMOS 7 DIAS',d7)+col('PRÓXIMOS 30 DIAS',d30);
+  if(!open.length)html+=`<div class="card empty"><b>Nada pendente.</b>Tudo concluído — registre o próximo passo pela barra de comando.</div>`;
+  return html;
+}
+function viewAlertas(){const al=allAlerts();return `<div class="hero"><h2>ALERTAS</h2><div class="d">Alertas não somem ao serem vistos: só saem quando o item é CONCLUÍDO, REPROGRAMADO ou CANCELADO COM JUSTIFICATIVA (ou quando o contato recebe uma ação agendada).</div></div>`+(al.length?al.map(alertRow).join(''):'<div class="card empty"><b>Sem alertas.</b></div>');}
+
+/* ---------- AGENDA ---------- */
+function viewAgenda(id){
+  if(id==='atrasados'){F={status:'ATRASADO',tipo:'',prio:'',dir:'',dia:'',q:''};}else if(id==='p1'){F={status:'ABERTOS',tipo:'',prio:'P1',dir:'',dia:'',q:''};}else if(id==='cobranca'){F={status:'ABERTOS',tipo:'COBRANÇA',prio:'',dir:'',dia:'',q:''};}
+  if(id){history.replaceState(null,'','#agenda');}
+  const T=todayStr();let L=S.items.slice();
+  if(F.status==='ABERTOS')L=L.filter(isOpen);else if(F.status)L=L.filter(i=>i.status===F.status);
+  if(F.tipo)L=L.filter(i=>i.tipo===F.tipo);if(F.dir)L=L.filter(i=>isOpen(i)&&(i.direcao||'MIM')===F.dir);
+  if(F.prio)L=L.filter(i=>isOpen(i)&&priority(i).level===F.prio);if(F.dia)L=L.filter(i=>F.dia==='late'?i.data<T:i.data===F.dia);
+  if(F.q){const q=norm(F.q);L=L.filter(i=>norm(i.descricao+' '+cName(contact(i.contatoId))).includes(q));}
+  L.sort((a,b)=>a.data<b.data?-1:a.data>b.data?1:(a.hora||'99')<(b.hora||'99')?-1:1);
+  const openAll=S.items.filter(isOpen);let strip=`<div class="days"><div class="day late ${F.dia==='late'?'on':''}" data-day="late"><span>atras.</span><b>⚠</b><i>${openAll.filter(i=>i.data<T).length||''}</i></div>`;
+  for(let k=0;k<21;k++){const d=addDays(T,k);const n=openAll.filter(i=>i.data===d).length;const dt=parseDs(d);strip+=`<div class="day ${F.dia===d?'on':''}" data-day="${d}"><span>${k===0?'hoje':WD[dt.getDay()]}</span><b>${dt.getDate()}</b><i>${n?n+'•':''}</i></div>`;}
+  strip+='</div>';
+  let html=`<div class="hero"><h2>AGENDA</h2><div class="d">${L.length} item(ns) ${F.dia?`· <a href="#" data-day="">limpar dia</a>`:''}</div></div>${strip}
+  <div class="flt">${sel('f_status',[['ABERTOS','Abertos'],['','Todos'],...STATUS.map(s=>[s,s])],F.status)}${sel('f_tipo',[['','Todos os tipos'],...TIPOS_ITEM.map(s=>[s,s])],F.tipo)}${sel('f_prio',[['','Todas prioridades'],...Object.entries(P_LABEL)],F.prio)}${sel('f_dir',[['','Todas direções'],['MIM','QUEM DEPENDE DE MIM'],['TERCEIRO','DE QUEM EU DEPENDO']],F.dir)}</div>
+  <input class="inp" id="f_q" placeholder="🔎 buscar na agenda" value="${h(F.q)}" style="margin-bottom:8px">`;
+  if(!L.length)return html+'<div class="card empty"><b>Nenhum item.</b>Ajuste os filtros ou crie pelo comando rápido.</div>';
+  let cur=null;for(const it of L){const g=it.data<T&&isOpen(it)?'ATRASADOS':it.data;if(g!==cur){cur=g;html+=`<div class="dayh">${g==='ATRASADOS'?'⚠ ATRASADOS':fmtD(g)+' · '+relD(g)}</div>`;}html+=itemCard(it);}
+  return html;
+}
+
+/* ---------- CONTATOS ---------- */
+function contactRow(c){const lc=lastContact(c.id);const p=contactPrio(c.id);return `<div class="card crow" data-open-contact="${c.id}"><div class="av">${h((cName(c)||'?').slice(0,2).toUpperCase())}</div><div class="b"><b>${h(cName(c))}</b><div class="meta"><span>${h(c.tipo)}</span>${c.cidade?`<span>📍${h(c.cidade)}</span>`:''}<span>último: ${lc?fmtD(lc):'—'}</span></div><div class="meta" style="margin-top:3px">${vcBadge(c)} ${iciBadge(c.id)} ${p?`<span class="pb ${p.level}" title="PRIORIDADE (maior item aberto)">${p.level}</span>`:''}</div></div></div>`;}
+function contactList(){let L=S.contacts.slice();if(CF.tipo)L=L.filter(c=>c.tipo===CF.tipo);if(CF.q){const q=norm(CF.q);L=L.filter(c=>norm([c.nome,c.fantasia,c.pessoaContato,c.cidade,c.doc,c.segmento].join(' ')).includes(q));}
+  L.sort((a,b)=>cName(a).localeCompare(cName(b),'pt-BR'));return L.length?L.map(contactRow).join(''):'<div class="card empty"><b>Nenhum contato.</b>Toque em + para cadastrar.</div>';}
+function viewContatos(){return `<div class="hero"><h2>CONTATOS</h2><div class="d">${S.contacts.length} cadastrados · VALOR COMERCIAL (VC) · CREDIBILIDADE (ICI) · PRIORIDADE (P) são dimensões separadas</div></div>
+  <div class="flt"><input id="c_q" placeholder="🔎 nome, cidade, CNPJ…" value="${h(CF.q)}">${sel('c_tipo',[['','Todos os tipos'],...TIPOS_CONTATO.map(t=>[t,t])],CF.tipo)}</div><button class="btn pri" data-act="newcontact" style="width:100%;margin-bottom:10px">+ Novo contato</button><div id="clist">${contactList()}</div>`;}
+function totals(cid){const ev=S.events.filter(e=>e.contatoId===cid);const n=t=>ev.filter(e=>e.tipo===t).length;
+  const pag=ev.filter(e=>e.dimensao==='FINANCEIRO'&&['PAGAMENTO','ATRASO'].includes(e.tipo));const ent=ev.filter(e=>e.tipo==='ENTREGA'||(e.tipo==='COMPRA'&&e.dimensao==='COMPROMISSOS'));
+  return {orcE:n('ORÇAMENTO ENVIADO'),orcA:n('ORÇAMENTO APROVADO'),pagOk:pag.filter(e=>e.resultado==='POS').length,pagAt:pag.filter(e=>e.resultado==='NEG').length,entOk:ent.filter(e=>e.resultado==='POS').length,entAt:ent.filter(e=>e.resultado==='NEG').length};}
+function viewContato(id){
+  const c=contact(id);if(!c)return '<div class="card empty"><b>Contato não encontrado.</b></div>';
+  const r=iciCompute(id);const b=iciBand(r?r.score:null);const p=contactPrio(id);const lc=lastContact(id);const nc=nextContact(id);const tt=totals(id);const wa=waLink(c.whatsapp);
+  const openI=S.items.filter(i=>i.contatoId===id&&isOpen(i)).sort((a,b)=>priority(b).score-priority(a).score);
+  const evs=contactEvents(id).slice().reverse();const logs=S.iciLog.filter(l=>l.contatoId===id).slice().reverse();
+  const colr={EXC:'#34f5b0',CONF:'#86efac',ATEN:'#fde047',RISC:'#fdba74',CRIT:'#fca5a5',SEM:'#64748b'};
+  let html=`<div class="hero"><a href="#contatos" class="small">← contatos</a><h2 style="font-size:20px">${h(cName(c))}</h2><div class="d" style="text-transform:none">${h(c.tipo)}${c.nome&&c.fantasia?' · '+h(c.nome):''}${c.cidade?' · 📍'+h(c.cidade)+'/'+h(c.uf||''):''}${c.pessoaContato?' · 👤 '+h(c.pessoaContato)+(c.cargo?' ('+h(c.cargo)+')':''):''}</div></div>
+  <div class="dims3"><div class="dim"><div class="k">VALOR COMERCIAL</div><div class="v">${stars(c.valorImportancia)}</div><div class="small muted">${c.valorPotencial?'potencial '+brl(c.valorPotencial):'potencial não informado'}</div></div>
+  <div class="dim"><div class="k">CREDIBILIDADE (ICI)</div><div class="v" style="color:${colr[b.k]}">${r?r.score:'—'}</div><div class="small"><span class="ici ${b.k}">${b.l}</span></div></div>
+  <div class="dim"><div class="k">PRIORIDADE</div><div class="v">${p?`<span class="pb ${p.level}">${p.level}</span>`:'—'}</div><div class="small muted">${p?P_LABEL[p.level].slice(3)+' · score '+p.score:'sem itens abertos'}</div></div></div>`;
+  html+=`<div class="card">${r?`<div class="bars">${Object.entries(DIMS).map(([k,d])=>{const x=r.dims[k];const pc=Math.round(x.ratio*100);return `<div class="bar"><span>${d.label}</span><div class="t"><i style="width:${pc}%;background:${pc>=85?'#34d399':pc>=70?'#86efac':pc>=60?'#fde047':pc>=40?'#fb923c':'#f87171'}"></i></div><span class="p">${x.pts.toFixed(1)}/${d.max}</span></div>`;}).join('')}</div><div class="small muted" style="margin-top:4px">${r.n} evento(s) pontuado(s). Dimensões sem eventos ficam na linha de base neutra (65%).</div>`:`<div class="small muted"><b>SEM HISTÓRICO</b> — o ICI só aparece depois do primeiro evento pontuado (compromisso, pagamento, comunicação…). Nada de nota inventada.</div>`}
+  <hr class="s"><div class="tots"><div class="tot"><b>${tt.orcA}/${tt.orcE}</b>orçamentos convertidos/enviados</div><div class="tot"><b><span style="color:var(--ok)">${tt.pagOk}</span> / <span style="color:var(--p1)">${tt.pagAt}</span></b>pagamentos em dia / atrasados</div><div class="tot"><b><span style="color:var(--ok)">${tt.entOk}</span> / <span style="color:var(--p1)">${tt.entAt}</span></b>entregas no prazo / atrasadas</div></div>
+  <hr class="s"><div class="meta"><span>Último contato: <b>${lc?fmtD(lc)+' ('+relD(lc)+')':'—'}</b></span><span>Próximo contato: <b>${nc?fmtD(nc.data)+' ('+relD(nc.data)+')':'—'}</b></span><span>Itens abertos: <b>${openI.length}</b></span></div>
+  ${nc?`<div class="next">➜ <b>Próxima ação:</b> ${h(nc.item.proximaAcao)} · até ${fmtD(nc.item.prazoProxima)}</div>`:`<div class="next late">Sem próxima ação agendada para este contato.</div>`}
+  <div class="acts">${wa?`<a class="wa" href="${wa}" target="_blank" rel="noopener">WhatsApp</a>`:''}${c.telefone?`<a href="tel:${h(String(c.telefone).replace(/[^\d+]/g,''))}">📞 Ligar</a>`:''}${c.email?`<a href="mailto:${h(c.email)}">✉ E-mail</a>`:''}<button data-act="event" data-cid="${id}">+ Evento</button><button data-act="newfor" data-cid="${id}">+ Compromisso</button><button data-act="editcontact" data-cid="${id}">✎ Editar</button></div></div>`;
+  if(openI.length)html+=secH('Itens abertos',openI.length)+openI.map(i=>itemCard(i)).join('');
+  html+=secH('Linha do tempo do relacionamento',evs.length);
+  html+=evs.length?`<div class="tl">${evs.map(e=>`<div class="ev"><div class="ic">${EV_ICON[e.tipo]||'•'}</div><div class="h">${fmtD(e.data)} ${e.data.slice(0,4)} · ${h(e.tipo)}${e.dimensao?`<span class="tag ${e.resultado||'NEU'}">${e.resultado==='POS'?'+':e.resultado==='NEG'?'−':'±'}${DIMS[e.dimensao].s}${e.severidade>1?' ×'+e.severidade:''}</span>`:''}${e.valor?' · '+brl(e.valor):''}</div><div class="x">${h(e.descricao||'')} <a href="#" class="small muted" data-act="delev" data-eid="${e.id}">remover</a></div></div>`).join('')}</div>`:'<div class="card empty small">Nenhum evento registrado. Registre conversas, orçamentos, pagamentos, entregas…</div>';
+  html+=`<details class="col"><summary><span>LOG DO ICI (${logs.length})</span><span>▾</span></summary>${logTable(logs,false)}</details>`;
+  html+=`<details class="col"><summary><span>DADOS CADASTRAIS</span><span>▾</span></summary><div class="small" style="padding-bottom:10px">${[['CNPJ/CPF',c.doc],['Telefone',c.telefone],['WhatsApp',c.whatsapp],['E-mail',c.email],['Segmento',c.segmento],['Origem',c.origem],['Primeiro contato',c.primeiroContato&&fmtD(c.primeiroContato)+' '+c.primeiroContato.slice(0,4)],['Responsável IN\'TEGRA',c.responsavel],['Observações',c.obs]].map(([k,v])=>`<div><span class="muted">${k}:</span> ${h(v||'—')}</div>`).join('')}</div></details>`;
+  return html;
+}
+function logTable(logs,withC){if(!logs.length)return '<div class="small muted" style="padding-bottom:10px">Nenhuma alteração registrada.</div>';return `<div style="overflow-x:auto;padding-bottom:10px"><table class="log"><tr><th>DATA</th>${withC?'<th>CONTATO</th>':''}<th>EVENTO</th><th>ANTERIOR</th><th>NOVA</th><th>MOTIVO</th></tr>${logs.map(l=>`<tr><td>${fmtD(l.data)} ${l.data.slice(2,4)}</td>${withC?`<td>${h(cName(contact(l.contatoId)))}</td>`:''}<td>${h(l.evento)}</td><td>${l.anterior==null?'SEM HIST.':l.anterior}</td><td><b>${l.nova==null?'SEM HIST.':l.nova}</b>${l.anteriorExato!=null||l.novaExata!=null?`<br><span class="muted" style="font-size:10px">${l.anteriorExato??'—'}→${l.novaExata??'—'}</span>`:''}</td><td>${h(l.motivo)}</td></tr>`).join('')}</table></div>`;}
+
+/* ---------- ANÁLISE ---------- */
+function insights(){
+  const MIN=S.settings.minEventosAnalise||3;const T=todayStr();const out=[];let hidden=0;
+  const byC=cid=>S.events.filter(e=>e.contatoId===cid);
+  for(const c of S.contacts){const ev=byC(c.id);
+    const env=ev.filter(e=>e.tipo==='ORÇAMENTO ENVIADO').length,apr=ev.filter(e=>e.tipo==='ORÇAMENTO APROVADO').length;
+    if(env>=MIN){const pc=Math.round(100*apr/env);if(pc<=34)out.push({cls:'bad',t:`${cName(c)} tem baixa conversão de orçamentos`,n:`${apr} convertido(s) de ${env} enviados (${pc}%). Revise preço/abordagem antes do próximo.`,cid:c.id});}
+    else if(env>0&&apr/env<=.34)hidden++;
+    if(['FORNECEDOR','FABRICANTE','REPRESENTANTE','PRESTADOR DE SERVIÇO'].includes(c.tipo)){const ent=ev.filter(e=>(e.tipo==='ENTREGA'||e.tipo==='COMPRA')&&e.dimensao==='COMPROMISSOS').sort((a,b)=>a.data<b.data?1:-1).slice(0,5);
+      if(ent.length>=MIN){const late=ent.filter(e=>e.resultado==='NEG').length;if(late>=2)out.push({cls:'bad',t:`${cName(c)} atrasou ${late} das últimas ${ent.length} entregas`,n:`Programe pedidos com folga ou tenha fornecedor alternativo. ICI atual: ${(iciCompute(c.id)||{}).score??'—'}.`,cid:c.id});
+        else if(late===0)out.push({cls:'good',t:`${cName(c)} entregou no prazo as últimas ${ent.length} entregas`,n:`0 atrasos registrados em ${ent.length} entregas.`,cid:c.id});}else if(ent.length)hidden++;}
+    if(['CLIENTE','PROSPECT'].includes(c.tipo)){const pag=ev.filter(e=>e.dimensao==='FINANCEIRO'&&['PAGAMENTO','ATRASO'].includes(e.tipo));
+      if(pag.length>=MIN){const neg=pag.filter(e=>e.resultado==='NEG').length;if(neg===0)out.push({cls:'good',t:`${cName(c)} sempre paga em dia`,n:`${pag.length} de ${pag.length} pagamentos registrados sem atraso.`,cid:c.id});
+        else if(neg>=2)out.push({cls:'bad',t:`${cName(c)} atrasa pagamentos com frequência`,n:`${neg} de ${pag.length} pagamentos registrados com atraso/cobrança. Considere pagamento antecipado ou sinal.`,cid:c.id});}else if(pag.length)hidden++;}
+    if(['TÉCNICO','PRESTADOR DE SERVIÇO'].includes(c.tipo)){const op=ev.filter(e=>e.dimensao==='OPERACIONAL'),cp=ev.filter(e=>e.dimensao==='COMPROMISSOS');
+      if(op.length>=MIN&&cp.length>=MIN){const good=op.filter(e=>e.resultado==='POS').length,late=cp.filter(e=>e.resultado==='NEG').length;if(good/op.length>=.7&&late>=2)out.push({cls:'',t:`${cName(c)}: boa qualidade técnica, mas atrasos recorrentes`,n:`${good} de ${op.length} serviços avaliados positivamente; ${late} de ${cp.length} compromissos com atraso. Passe horários com margem.`,cid:c.id});}else if(op.length||cp.length)hidden++;}
+  }
+  const orc=allAlerts().filter(a=>a.kind==='orc_sem_follow');if(orc.length){const tot=orc.reduce((s,a)=>s+(a.valor||0),0);out.unshift({cls:'bad',t:`${brl(tot)} em orçamentos sem follow-up`,n:`${orc.length} orçamento(s) enviados há ≥${S.settings.diasOrcFollow} dias sem retorno registrado: ${orc.map(a=>a.text.split(': ').pop()).join(', ')}.`});}
+  const cli=S.contacts.filter(c=>c.tipo==='CLIENTE');const withEv=cli.filter(c=>lastContact(c.id));
+  if(withEv.length>=MIN){const inat=withEv.filter(c=>diffDays(lastContact(c.id),T)>(S.settings.diasInativo||60));if(inat.length)out.push({cls:'bad',t:`${inat.length} cliente(s) sem contato há mais de ${S.settings.diasInativo} dias`,n:inat.map(c=>`${cName(c)} (${diffDays(lastContact(c.id),T)}d)`).join(', ')});}else if(withEv.length)hidden++;
+  const allE=S.events.filter(e=>e.tipo==='ORÇAMENTO ENVIADO').length,allA=S.events.filter(e=>e.tipo==='ORÇAMENTO APROVADO').length;if(allE>=MIN)out.push({cls:'',t:`Conversão geral de orçamentos: ${Math.round(100*allA/allE)}%`,n:`${allA} aprovados de ${allE} enviados (todos os contatos).`});
+  const done=S.items.filter(i=>i.status==='CONCLUÍDO'&&i.concluidoEm);if(done.length>=5){const ok=done.filter(i=>i.concluidoEm<=i.data).length;out.push({cls:ok/done.length>=.8?'good':'',t:`${Math.round(100*ok/done.length)}% dos itens concluídos no prazo`,n:`${ok} de ${done.length} itens concluídos até a data prevista.`});}
+  return {out,hidden};
+}
+function viewAnalise(){
+  const {out,hidden}=insights();const rank=S.contacts.map(c=>({c,r:iciCompute(c.id)})).filter(x=>x.r).sort((a,b)=>b.r.score-a.r.score);
+  let html=`<div class="hero"><h2>ANÁLISE</h2><div class="d">Padrões calculados estritamente a partir dos registros. Mínimo de ${S.settings.minEventosAnalise} eventos por padrão — sem dados, sem conclusão.</div></div>`;
+  html+=secH('Padrões encontrados',out.length)+(out.length?out.map(x=>`<div class="card ins ${x.cls}" ${x.cid?`data-open-contact="${x.cid}"`:''}><b>${h(x.t)}</b><div class="num">${h(x.n)}</div></div>`).join(''):'<div class="card empty"><b>Dados insuficientes.</b>Registre eventos (orçamentos, pagamentos, entregas) para que padrões apareçam.</div>');
+  if(hidden)html+=`<div class="small muted">${hidden} possível(is) padrão(ões) oculto(s) por dados insuficientes (menos de ${S.settings.minEventosAnalise} eventos).</div>`;
+  html+=secH('Ranking de credibilidade (ICI)',rank.length)+(rank.length?`<div class="card">${rank.map(x=>`<div class="crow" data-open-contact="${x.c.id}" style="padding:6px 0;border-bottom:1px solid var(--bd)"><div class="b"><b>${h(cName(x.c))}</b><span class="small muted">${h(x.c.tipo)} · ${x.r.n} eventos</span></div>${iciBadge(x.c.id)}</div>`).join('')}</div>`:'');
+  const semH=S.contacts.filter(c=>!iciCompute(c.id));if(semH.length)html+=`<div class="small muted">SEM HISTÓRICO: ${semH.map(c=>h(cName(c))).join(', ')}</div>`;
+  html+=secH('Log do ICI (últimas 40 alterações)')+`<div class="card">${logTable(S.iciLog.slice().reverse().slice(0,40),true)}</div>`;
+  return html;
+}
+
+/* ---------- CONFIG ---------- */
+function viewConfig(){const s=S.settings;return `<div class="hero"><h2>CONFIGURAÇÕES</h2><div class="d">Dados salvos apenas neste navegador (localStorage). Faça backup.</div></div>
+  <div class="card"><form id="cfgform">${fld('Responsáveis (um por linha)',`<textarea name="responsaveis">${h(s.responsaveis.join('\n'))}</textarea>`)}
+  <div class="g2">${fld('Cliente sem contato (dias)',`<input type="number" name="diasSemContato" value="${s.diasSemContato}">`)}${fld('Cliente inativo (dias)',`<input type="number" name="diasInativo" value="${s.diasInativo}">`)}${fld('Orçamento sem follow-up (dias)',`<input type="number" name="diasOrcFollow" value="${s.diasOrcFollow}">`)}${fld('Oportunidade parada (dias)',`<input type="number" name="diasOportParada" value="${s.diasOportParada}">`)}${fld('Aviso de vencimento (dias)',`<input type="number" name="diasVencimento" value="${s.diasVencimento}">`)}${fld('Mín. eventos p/ análise',`<input type="number" name="minEventosAnalise" value="${s.minEventosAnalise}">`)}</div>
+  <label class="ck"><input type="checkbox" name="notif" ${s.notif?'checked':''}> Notificações do navegador para alertas CRÍTICOS (com a página aberta)</label>
+  <button class="btn pri" type="submit" style="width:100%">Salvar configurações</button></form></div>
+  <div class="card"><b>Backup</b><div class="acts"><button data-act="export">⬇ Exportar JSON</button><button data-act="import">⬆ Importar JSON</button></div><input type="file" id="impfile" accept=".json,application/json" style="display:none"></div>
+  <div class="card"><b>Demonstração</b><div class="small muted">Carrega contatos, compromissos e histórico FICTÍCIOS (Londrina, Cambé, Arapongas…). Substitui os dados atuais.</div><div class="acts"><button data-act="sample">Carregar dados de exemplo (fictícios)</button></div></div>
+  <div class="card"><b style="color:var(--p1)">Zona de perigo</b><div class="acts"><button class="btn dng" data-act="wipe">Apagar tudo</button></div></div>
+  <div class="small muted" style="text-align:center">AGENDA IMPLACÁVEL v1 · IN’TEGRA FUEL · NÃO PERCA A DIREÇÃO.</div>`;}
+
+/* ---------- sheets / formulários ---------- */
+function openSheet(html){$('#sheet').innerHTML=html;$('#ov').classList.add('on');$('#sheet').scrollTop=0;}
+function closeSheet(){$('#ov').classList.remove('on');$('#sheet').innerHTML='';}
+function contactOpts(extra){return [['','— sem contato —'],...(extra||[]),...S.contacts.slice().sort((a,b)=>cName(a).localeCompare(cName(b))).map(c=>[c.id,cName(c)+' · '+c.tipo])];}
+function itemFormHtml(it,o={}){
+  const resp=S.settings.responsaveis.length?S.settings.responsaveis:[''];const extra=it._novoContato?[['__new','+ NOVO: '+it._novoContato]]:[];
+  return `<form id="itemform" data-id="${it.id}" data-mode="${o.mode||'edit'}">
+  <div class="g2">${fld('Tipo',sel('tipo',TIPOS_ITEM,it.tipo))}${fld('Status',sel('status',STATUS.filter(s=>o.mode==='edit'||OPEN.has(s)),it.status))}</div>
+  ${fld('Descrição / serviço',`<input name="descricao" value="${h(it.descricao)}" required>`)}
+  ${fld('Contato',sel('contatoId',contactOpts(extra),it._novoContato&&!it.contatoId?'__new':it.contatoId))}
+  <div id="newcbox" style="display:${it._novoContato&&!it.contatoId?'block':'none'}" class="g2">${fld('Nome do novo contato',`<input name="novoNome" value="${h(it._novoContato||'')}">`)}${fld('Tipo do contato',sel('novoTipo',TIPOS_CONTATO,'CLIENTE'))}</div>
+  <div class="g2">${fld('Data',`<input type="date" name="data" value="${h(it.data)}">`)}${fld('Horário',`<input type="time" name="hora" value="${h(it.hora)}">`)}</div>
+  <div class="g2">${fld('Local',`<input name="local" value="${h(it.local)}">`)}${fld('Responsável',sel('responsavel',resp,it.responsavel))}</div>
+  <div class="g2">${fld('Valor envolvido (R$)',`<input type="number" step="0.01" name="valor" value="${it.valor||''}">`)}${fld('Risco de perda',sel('riscoPerda',[[0,'nenhum'],[1,'baixo'],[2,'médio'],[3,'alto']],it.riscoPerda||0))}</div>
+  ${fld('Direção',sel('direcao',[['MIM','DEPENDE DE MIM (outros esperam por mim)'],['TERCEIRO','DEPENDO DE TERCEIRO (estou esperando)']],it.direcao))}
+  ${fld('Materiais (um por linha)',`<textarea name="materiais">${h((it.materiais||[]).join('\n'))}</textarea>`)}
+  <label class="ck"><input type="checkbox" name="materiaisOk" ${it.materiaisOk?'checked':''}> Materiais separados / conferidos</label>
+  ${fld('Checklist (um por linha)',`<textarea name="checklist">${h((it.checklist||[]).map(c=>c.t).join('\n'))}</textarea>`)}
+  ${(it.checklist||[]).length&&o.mode==='edit'?`<div>${it.checklist.map((c,k)=>`<label class="ck"><input type="checkbox" data-ck="${k}" ${c.ok?'checked':''}> ${h(c.t)}</label>`).join('')}</div>`:''}
+  ${fld('Condição (ação condicional)',`<input name="condicao" value="${h(it.condicao)}" placeholder="ex.: se ele não pagar">`)}
+  <div class="req"><b>★ REGRA DA PRÓXIMA AÇÃO (obrigatória para itens abertos)</b>${fld('Próxima ação',`<input name="proximaAcao" value="${h(it.proximaAcao)}">`)}${fld('Prazo da próxima ação',`<input type="date" name="prazoProxima" value="${h(it.prazoProxima)}">`)}</div>
+  ${o.mode==='edit'&&it.status==='CANCELADO'?fld('Justificativa do cancelamento',`<input name="justificativa" value="${h(it.justificativa||'')}">`):''}
+  <div class="err" id="itemerr"></div>
+  <div class="acts"><button type="button" class="btn" data-act="close">Cancelar</button><button type="submit" class="btn pri">${o.mode==='preview'?'✓ Confirmar e salvar':'Salvar'}</button></div></form>`;
+}
+function readItemForm(form,base){
+  const fd=new FormData(form);const g=k=>(fd.get(k)||'').toString().trim();
+  const it=Object.assign({},base);
+  Object.assign(it,{tipo:g('tipo'),status:g('status'),descricao:g('descricao'),data:g('data'),hora:g('hora'),local:g('local'),responsavel:g('responsavel'),valor:+g('valor')||0,riscoPerda:+g('riscoPerda')||0,direcao:g('direcao')||'MIM',condicao:g('condicao'),proximaAcao:g('proximaAcao'),prazoProxima:g('prazoProxima'),materiaisOk:fd.get('materiaisOk')==='on'});
+  if(fd.has('justificativa'))it.justificativa=g('justificativa');
+  it.materiais=g('materiais').split('\n').map(s=>s.trim()).filter(Boolean);
+  const old=base.checklist||[];const oks={};form.querySelectorAll('[data-ck]').forEach(x=>{oks[old[+x.dataset.ck]?.t]=x.checked;});
+  it.checklist=g('checklist').split('\n').map(s=>s.trim()).filter(Boolean).map(t=>({t,ok:oks[t]!=null?oks[t]:!!(old.find(o=>o.t===t)||{}).ok}));
+  const cid=g('contatoId');it._createContact=null;if(cid==='__new'){it.contatoId=null;it._createContact={nome:g('novoNome')||base._novoContato,tipo:g('novoTipo')||'CLIENTE'};}else it.contatoId=cid||null;
+  return it;
+}
+function submitItemForm(form){
+  const id=form.dataset.id;const mode=form.dataset.mode;const existing=S.items.find(i=>i.id===id);const base=existing||form._base;
+  const it=readItemForm(form,base);const errs=validateItem(it);if(it._createContact&&!it._createContact.nome)errs.push('Informe o nome do novo contato.');
+  const eb=$('#itemerr');if(errs.length){eb.innerHTML=errs.map(h).join('<br>');eb.classList.add('on');eb.scrollIntoView({block:'center'});return false;}
+  if(it._createContact){const c=newContactObj({nome:it._createContact.nome,fantasia:it._createContact.nome,tipo:it._createContact.tipo});S.contacts.push(c);it.contatoId=c.id;}
+  delete it._createContact;delete it._novoContato;
+  if(existing){const ch=[];for(const k of ['data','hora','status','proximaAcao','prazoProxima','descricao','tipo'])if(existing[k]!==it[k])ch.push(k+': '+(existing[k]||'—')+' → '+(it[k]||'—'));
+    if(existing.data!==it.data&&it.data>=todayStr()&&it.status==='ATRASADO')it.status=existing.statusAntes||'PENDENTE';
+    if(ch.length)hist(it,existing.data!==it.data?'REPROGRAMADO/EDITADO':'Editado',ch.join('; '));Object.assign(existing,it);}
+  else{if(mode==='preview')$('#qcin').value='';hist(it,'Criado',mode==='preview'?'via comando rápido: "'+(form._raw||'')+'"':'manual');S.items.push(it);}
+  save();closeSheet();toast(existing?'Item atualizado':'Compromisso salvo ✓');render();return true;
+}
+function openItemForm(it,mode,raw){openSheet(`<div class="hd"><h3>${mode==='preview'?'PRÉ-VISUALIZAÇÃO — confira e ajuste':mode==='new'?'Novo compromisso / pendência':'Editar item'}</h3><button class="iconbtn" data-act="close">✕</button></div>${mode==='preview'?previewHtml(it,raw):''}${mode==='edit'?itemActionsHtml(it):''}${itemFormHtml(it,{mode})}${mode==='edit'?itemHistHtml(it):''}`);const f=$('#itemform');f._base=it;f._raw=raw;}
+function previewHtml(it,raw){const p=window._lastParse||{};const c=contact(it.contatoId);const al=alertsForItem(Object.assign({},it,{id:'tmp'}));const pr=priority(it);
+  return `<div class="pv" id="preview"><div class="k">COMANDO</div><div class="small">“${h(raw)}”</div><hr class="s">
+  <div class="g2"><div><div class="k">TIPO</div><b id="pv-tipo">${h(it.tipo)}</b></div><div><div class="k">DATA</div><b id="pv-data">${fmtD(it.data)}${it.hora?' '+it.hora:''}</b> <span class="small muted">(${relD(it.data)})</span></div></div>
+  <div class="g2" style="margin-top:6px"><div><div class="k">CONTATO</div><b id="pv-contato">${c?h(cName(c)):it._novoContato?'NOVO: '+h(it._novoContato):'—'}</b> ${c?iciBadge(c.id):''}</div><div><div class="k">PRIORIDADE</div><span class="pb ${pr.level}">${P_LABEL[pr.level]}</span></div></div>
+  <div style="margin-top:6px"><div class="k">SERVIÇO / DESCRIÇÃO</div><b id="pv-desc">${h(it.descricao)}</b></div>
+  ${it.materiais.length?`<div style="margin-top:6px"><div class="k">MATERIAIS</div><ul id="pv-mat">${it.materiais.map(m=>`<li>${h(m)}</li>`).join('')}</ul></div>`:''}
+  ${it.checklist.length?`<div style="margin-top:6px"><div class="k">CHECKLIST</div><ul id="pv-ck">${it.checklist.map(m=>`<li>${h(m.t)}</li>`).join('')}</ul></div>`:''}
+  ${it.condicao?`<div style="margin-top:6px" class="cond" id="pv-cond">⚑ CONDICIONAL: ${h(it.condicao)}</div>`:''}
+  <div style="margin-top:6px"><div class="k">PRÓXIMA AÇÃO</div><span id="pv-next">${h(it.proximaAcao)} · até ${fmtD(it.prazoProxima)}</span></div>
+  ${al.length?`<div style="margin-top:6px"><div class="k">ALERTAS QUE SERÃO GERADOS</div><ul id="pv-alerts">${al.map(a=>`<li>${a.sev}: ${h(a.text)}</li>`).join('')}</ul></div>`:''}
+  ${(p.notas||[]).length?`<div class="small" style="color:var(--ac2);margin-top:6px">${p.notas.map(h).join('<br>')}</div>`:''}
+  ${(p.candidatos||[]).length>1?`<div class="small muted">Outros candidatos: ${p.candidatos.slice(1).map(x=>h(x.nome)).join(', ')}</div>`:''}</div><div class="small muted">Edite abaixo se algo estiver errado:</div>`;}
+function itemActionsHtml(it){if(!isOpen(it))return `<div class="small muted">Item ${h(it.status)}${it.justificativa?' — justificativa: '+h(it.justificativa):''}${it.concluidoEm?' em '+fmtD(it.concluidoEm):''}</div>`;
+  return `<div class="acts" style="margin-bottom:6px"><button class="ok" data-act="done" data-id="${it.id}">✓ Concluir</button><button data-act="resched" data-id="${it.id}">⟳ Reprogramar</button><button class="btn dng" data-act="cancel" data-id="${it.id}">Cancelar item</button></div>`;}
+function itemHistHtml(it){return `<details class="col"><summary><span>HISTÓRICO DO ITEM (${(it.historico||[]).length})</span><span>▾</span></summary>${(it.historico||[]).slice().reverse().map(x=>`<div class="hist"><b>${new Date(x.ts).toLocaleString('pt-BR',{dateStyle:'short',timeStyle:'short'})}</b> · ${h(x.acao)} ${h(x.detalhe)}</div>`).join('')||'<div class="hist">—</div>'}</details>`;}
+
+function newContactObj(o){return Object.assign({id:uid(),tipo:'CLIENTE',nome:'',fantasia:'',doc:'',cidade:'',uf:'PR',pessoaContato:'',cargo:'',telefone:'',whatsapp:'',email:'',segmento:'',obs:'',primeiroContato:todayStr(),origem:'',responsavel:S.settings.responsaveis[0]||'',valorImportancia:3,valorPotencial:0,criadoEm:new Date().toISOString()},o);}
+function openContactForm(c){const isNew=!c;c=c||newContactObj();const I=(n,l,t)=>fld(l,`<input name="${n}" type="${t||'text'}" value="${h(c[n]??'')}">`);
+  openSheet(`<div class="hd"><h3>${isNew?'Novo contato':'Editar contato'}</h3><button class="iconbtn" data-act="close">✕</button></div><form id="contactform" data-id="${c.id}" data-new="${isNew?1:''}">
+  ${fld('Tipo',sel('tipo',TIPOS_CONTATO,c.tipo))}${I('nome','Razão social / nome')}${I('fantasia','Nome fantasia')}<div class="g2">${I('doc','CNPJ / CPF')}${I('segmento','Segmento')}</div>
+  <div class="g2">${I('cidade','Cidade')}${I('uf','UF')}</div><div class="g2">${I('pessoaContato','Pessoa de contato')}${I('cargo','Cargo')}</div>
+  <div class="g2">${I('telefone','Telefone','tel')}${I('whatsapp','WhatsApp (DDD+número)','tel')}</div>${I('email','E-mail','email')}
+  <div class="g2">${I('origem','Origem')}${fld('Responsável IN\'TEGRA',sel('responsavel',S.settings.responsaveis,c.responsavel))}</div>${I('primeiroContato','Data do primeiro contato','date')}
+  <div class="req"><b>VALOR COMERCIAL (separado de credibilidade e prioridade)</b><div class="g2">${fld('Importância (1–5)',sel('valorImportancia',[1,2,3,4,5],c.valorImportancia))}${fld('Potencial R$ / ano',`<input type="number" name="valorPotencial" value="${c.valorPotencial||''}">`)}</div></div>
+  ${fld('Observações',`<textarea name="obs">${h(c.obs)}</textarea>`)}<div class="small muted">CREDIBILIDADE (ICI) não é editável: é calculada só a partir dos eventos do histórico.</div>
+  <div class="err" id="cerr"></div><div class="acts"><button type="button" class="btn" data-act="close">Cancelar</button><button class="btn pri" type="submit">Salvar</button></div></form>`);}
+function submitContactForm(form){const fd=new FormData(form);const o={};for(const [k,v] of fd.entries())o[k]=v.toString().trim();o.valorImportancia=+o.valorImportancia||3;o.valorPotencial=+o.valorPotencial||0;
+  if(!o.nome&&!o.fantasia){const e=$('#cerr');e.textContent='Informe o nome.';e.classList.add('on');return;}
+  if(form.dataset.new){const c=newContactObj(o);S.contacts.push(c);save();closeSheet();toast('Contato criado');go('contato/'+c.id);}else{Object.assign(contact(form.dataset.id),o);save();closeSheet();toast('Contato atualizado');render();}}
+function openEventForm(cid,itemId,pre){const T=todayStr();
+  openSheet(`<div class="hd"><h3>Registrar evento no histórico</h3><button class="iconbtn" data-act="close">✕</button></div><form id="eventform" data-item="${itemId||''}">
+  ${fld('Contato',sel('contatoId',contactOpts(),cid||''))}<div class="g2">${fld('Data',`<input type="date" name="data" value="${T}">`)}${fld('Tipo de evento',sel('tipo',TIPOS_EVENTO,pre&&pre.tipo||'CONVERSA'))}</div>
+  ${fld('Descrição',`<input name="descricao" value="${h(pre&&pre.descricao||'')}" placeholder="o que aconteceu?">`)}
+  <div class="small muted">Atalhos de credibilidade (preenchem dimensão/resultado do ICI):</div><div class="chips">${PRESETS.map((p,k)=>`<button type="button" class="chip ${p[2]==='POS'?'pos':'neg'}" data-preset="${k}">${p[2]==='POS'?'+':'−'} ${h(p[0])}</button>`).join('')}</div>
+  <div class="req"><b>IMPACTO NO ICI (opcional)</b><div class="g3">${fld('Dimensão',sel('dimensao',[['','não afeta ICI'],...Object.entries(DIMS).map(([k,d])=>[k,d.label])],''))}${fld('Resultado',sel('resultado',[['POS','positivo'],['NEU','neutro'],['NEG','negativo']],'NEU'))}${fld('Severidade',sel('severidade',[[1,'1 leve'],[2,'2 relevante'],[3,'3 grave']],1))}</div></div>
+  ${fld('Valor (R$, opcional)',`<input type="number" name="valor">`)}<div class="err" id="everr"></div>
+  <div class="acts"><button type="button" class="btn" data-act="close">Cancelar</button><button class="btn pri" type="submit">Registrar</button></div></form>`);}
+function submitEventForm(form){const fd=new FormData(form);const g=k=>(fd.get(k)||'').toString().trim();const ev={contatoId:g('contatoId')||null,data:g('data'),tipo:g('tipo'),descricao:g('descricao'),dimensao:g('dimensao')||null,resultado:g('dimensao')?g('resultado'):null,severidade:+g('severidade')||1,valor:+g('valor')||0,itemId:form.dataset.item||null};
+  const e=$('#everr');if(!ev.contatoId){e.textContent='Escolha o contato.';e.classList.add('on');return;}if(!ev.descricao)ev.descricao=ev.tipo;
+  addEvent(ev);save();closeSheet();toast(ev.dimensao?'Evento registrado · ICI atualizado':'Evento registrado');render();}
+
+/* ---------- concluir (com próxima ação obrigatória) ---------- */
+function openDone(id){const it=S.items.find(i=>i.id===id);const c=contact(it.contatoId);const tpl=nextTemplates(it);const t0=tpl[0];
+  openSheet(`<div class="hd"><h3>Concluir: ${h(it.descricao)}</h3><button class="iconbtn" data-act="close">✕</button></div><form id="doneform" data-id="${id}">
+  ${fld('Resultado / observação',`<textarea name="obs" placeholder="o que foi feito?"></textarea>`)}
+  ${c?`<div class="req"><b>REGISTRAR NO HISTÓRICO DE ${h(cName(c).toUpperCase())}</b><label class="ck"><input type="checkbox" name="regev" checked> Registrar evento “${h(EV_FROM_ITEM[it.tipo]||'CONVERSA')}”</label>
+    <div class="small muted">Como foi? (alimenta o ICI — opcional)</div><div class="chips">${PRESETS.map((p,k)=>`<button type="button" class="chip ${p[2]==='POS'?'pos':'neg'}" data-dpreset="${k}">${p[2]==='POS'?'+':'−'} ${h(p[0])}</button>`).join('')}</div><input type="hidden" name="preset" value=""></div>`:''}
+  <div class="req"><b>★ PRÓXIMA AÇÃO (obrigatória)</b><div class="chips">${tpl.map((t,k)=>`<button type="button" class="chip ${k===0?'on':''}" data-tpl="${k}">${h(t.label)}</button>`).join('')}</div>
+  <div class="g2">${fld('Tipo',sel('ntipo',TIPOS_ITEM,t0.tipo))}${fld('Data',`<input type="date" name="ndata" value="${t0.data}">`)}</div>${fld('Próxima ação',`<input name="ndesc" value="${h(t0.desc)}">`)}<input type="hidden" name="ndir" value="${t0.dir}">
+  <label class="ck"><input type="checkbox" name="nonext"> Encerrar ciclo SEM próxima ação</label><div id="nonextbox" style="display:none">${fld('Justificativa (obrigatória)',`<input name="nonextjust">`)}</div></div>
+  <div class="err" id="doneerr"></div><div class="acts"><button type="button" class="btn" data-act="close">Voltar</button><button class="btn ok" type="submit">✓ Concluir</button></div></form>`);
+  $('#doneform')._tpl=tpl;}
+function submitDone(form){const it=S.items.find(i=>i.id===form.dataset.id);const fd=new FormData(form);const g=k=>(fd.get(k)||'').toString().trim();const e=$('#doneerr');
+  const nonext=fd.get('nonext')==='on';
+  if(nonext&&g('nonextjust').length<5){e.textContent='REGRA DA PRÓXIMA AÇÃO: para encerrar sem próxima ação, escreva uma justificativa.';e.classList.add('on');return false;}
+  if(!nonext&&(!g('ndesc')||!g('ndata'))){e.textContent='REGRA DA PRÓXIMA AÇÃO: defina a próxima ação e a data (ou encerre o ciclo com justificativa).';e.classList.add('on');return false;}
+  it.status='CONCLUÍDO';it.concluidoEm=todayStr();hist(it,'CONCLUÍDO',g('obs'));
+  if(it.contatoId&&fd.get('regev')==='on'){const pk=g('preset');const p=pk!==''?PRESETS[+pk]:null;
+    addEvent({contatoId:it.contatoId,itemId:it.id,data:todayStr(),tipo:p?p[4]:(EV_FROM_ITEM[it.tipo]||'CONVERSA'),descricao:(p?p[0]+' — ':'')+it.descricao+(g('obs')?' ('+g('obs')+')':''),dimensao:p?p[1]:null,resultado:p?p[2]:null,severidade:p?p[3]:1,valor:+it.valor||0});}
+  if(nonext){hist(it,'Ciclo encerrado sem próxima ação',g('nonextjust'));}
+  else{const n=normalizeItem({tipo:g('ntipo'),data:g('ndata'),contatoId:it.contatoId,descricao:g('ndesc'),proximaAcao:g('ndesc'),prazoProxima:g('ndata'),direcao:g('ndir')||'MIM',responsavel:it.responsavel,origemItemId:it.id,valor:g('ntipo')==='COBRANÇA'?it.valor:0});hist(n,'Criado','próxima ação gerada ao concluir "'+it.descricao+'"');S.items.push(n);hist(it,'Próxima ação criada',n.descricao+' em '+fmtD(n.data));}
+  save();closeSheet();toast(nonext?'Concluído (ciclo encerrado)':'Concluído ✓ próxima ação agendada');render();return true;}
+function openResched(id){const it=S.items.find(i=>i.id===id);const T=todayStr();const base=it.data<T?T:it.data;
+  openSheet(`<div class="hd"><h3>Reprogramar: ${h(it.descricao)}</h3><button class="iconbtn" data-act="close">✕</button></div><form id="reschform" data-id="${id}">
+  <div class="small muted">Atual: ${fmtD(it.data)} ${it.hora||''} (${relD(it.data)}). A mudança fica registrada no histórico.</div>
+  <div class="chips"><button type="button" class="chip" data-rd="${addDays(T,1)}">amanhã</button><button type="button" class="chip" data-rd="${addDays(base,1)}">+1 dia</button><button type="button" class="chip" data-rd="${addDays(base,7)}">+1 semana</button><button type="button" class="chip" data-rd="${addMonths(base,1)}">+1 mês</button></div>
+  <div class="g2">${fld('Nova data',`<input type="date" name="data" value="${addDays(base,1)}">`)}${fld('Horário',`<input type="time" name="hora" value="${h(it.hora)}">`)}</div>${fld('Motivo',`<input name="motivo" placeholder="ex.: cliente pediu, peça atrasou">`)}
+  <div class="acts"><button type="button" class="btn" data-act="close">Voltar</button><button class="btn pri" type="submit">Reprogramar</button></div></form>`);}
+function reschedule(it,nd,hora,motivo){const old=it.data;const delta=diffDays(old,nd);it.data=nd;if(hora!=null)it.hora=hora;
+  if(it.prazoProxima){if(it.prazoProxima<todayStr()||it.prazoProxima<=old)it.prazoProxima=nd<it.prazoProxima?nd:(addDays(it.prazoProxima,delta)<todayStr()?todayStr():addDays(it.prazoProxima,delta));if(it.prazoProxima>nd)it.prazoProxima=nd;}
+  if(it.status==='ATRASADO')it.status=it.statusAntes||'PENDENTE';hist(it,'REPROGRAMADO',fmtD(old)+' → '+fmtD(nd)+(motivo?' · motivo: '+motivo:''));save();}
+function openCancel(id){const it=S.items.find(i=>i.id===id);openSheet(`<div class="hd"><h3>Cancelar: ${h(it.descricao)}</h3><button class="iconbtn" data-act="close">✕</button></div><form id="cancelform" data-id="${id}">${fld('Justificativa (obrigatória)',`<textarea name="just"></textarea>`)}<div class="err" id="cancerr"></div><div class="acts"><button type="button" class="btn" data-act="close">Voltar</button><button class="btn dng" type="submit">Cancelar item</button></div></form>`);}
+
+/* ---------- comando rápido ---------- */
+function runQuick(){const v=$('#qcin').value.trim();if(!v)return;const p=parseCommand(v);window._lastParse=p;const it=itemFromParse(p);openItemForm(it,'preview',v);}
+
+/* ---------- render ---------- */
+function render(){
+  refreshAuto();const r=route();document.querySelectorAll('nav.tabs a').forEach(a=>a.classList.toggle('on',a.dataset.tab===(r.name==='contato'?'contatos':r.name)));
+  let html='';switch(r.name){case 'agenda':html=viewAgenda(r.id);break;case 'contatos':html=viewContatos();break;case 'contato':html=viewContato(r.id);break;case 'analise':html=viewAnalise();break;case 'config':html=viewConfig();break;case 'alertas':html=viewAlertas();break;default:html=viewHoje();}
+  $('#view').innerHTML=sampleBanner()+html;notifyCritical();
+}
+const notified=new Set();
+function notifyCritical(){if(!S.settings.notif||!('Notification' in window)||Notification.permission!=='granted')return;for(const a of allAlerts().filter(a=>a.sev==='CRÍTICO')){const k=a.kind+a.text;if(notified.has(k))continue;notified.add(k);try{new Notification('AGENDA IMPLACÁVEL — CRÍTICO',{body:a.text});}catch(e){}}}
+
+/* ---------- eventos globais ---------- */
+function download(name,text){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([text],{type:'application/json'}));a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},500);}
+document.addEventListener('click',ev=>{
+  const t=ev.target;
+  const act=t.closest('[data-act]');
+  if(act){ev.preventDefault();ev.stopPropagation();const a=act.dataset.act,id=act.dataset.id;
+    switch(a){
+      case 'close':closeSheet();break;
+      case 'done':openDone(id);break;
+      case 'resched':openResched(id);break;
+      case 'cancel':openCancel(id);break;
+      case 'event':openEventForm(act.dataset.cid,id);break;
+      case 'newfor':{const k=act.dataset.kind;const tp=k==='orc_sem_follow'?'FOLLOW-UP':k==='oport_parada'?'VISITA COMERCIAL':'RETORNO AO CLIENTE';const c=contact(act.dataset.cid);const d=addDays(todayStr(),1);openItemForm(normalizeItem({tipo:tp,contatoId:act.dataset.cid,data:d,descricao:(tp==='FOLLOW-UP'?'Follow-up do orçamento':tp==='VISITA COMERCIAL'?'Retomar oportunidade':'Retornar contato')+' — '+cName(c),proximaAcao:'Ligar / WhatsApp',prazoProxima:d}),'new');break;}
+      case 'newcontact':openContactForm();break;
+      case 'editcontact':openContactForm(contact(act.dataset.cid));break;
+      case 'delev':if(confirm('Remover este evento? A alteração no ICI ficará registrada no log.')){deleteEvent(act.dataset.eid);save();render();}break;
+      case 'fab':openSheet(`<div class="hd"><h3>Criar</h3><button class="iconbtn" data-act="close">✕</button></div><div class="acts" style="flex-direction:column"><button data-act="newitem">📅 Novo compromisso / pendência</button><button data-act="newcontact">👤 Novo contato</button><button data-act="event">📝 Registrar evento</button></div><div class="small muted" style="margin-top:10px">Dica: a barra de comando rápido entende frases como “Cobrar João sexta se ele não pagar”.</div>`);break;
+      case 'newitem':{const d=todayStr();openItemForm(normalizeItem({data:d,prazoProxima:d}),'new');break;}
+      case 'sample':if(!S.contacts.length&&!S.items.length||confirm('Carregar dados de exemplo FICTÍCIOS? Isso substitui os dados atuais.')){loadSample();toast('Dados de exemplo (fictícios) carregados');go('hoje');render();}break;
+      case 'wipe':if(prompt('Digite APAGAR para remover todos os dados deste navegador:')==='APAGAR'){S=emptyState();save();toast('Tudo apagado');go('hoje');render();}break;
+      case 'export':download('agenda-implacavel-backup-'+todayStr()+'.json',JSON.stringify(S,null,1));break;
+      case 'import':$('#impfile').click();break;
+    }return;}
+  const pr=t.closest('[data-preset]');if(pr){const p=PRESETS[+pr.dataset.preset];const f=$('#eventform');f.dimensao.value=p[1];f.resultado.value=p[2];f.severidade.value=p[3];f.tipo.value=p[4];if(!f.descricao.value)f.descricao.value=p[0];f.querySelectorAll('[data-preset]').forEach(x=>x.classList.toggle('on',x===pr));return;}
+  const dp=t.closest('[data-dpreset]');if(dp){const f=$('#doneform');const on=!dp.classList.contains('on');f.querySelectorAll('[data-dpreset]').forEach(x=>x.classList.remove('on'));if(on)dp.classList.add('on');f.preset.value=on?dp.dataset.dpreset:'';return;}
+  const tp=t.closest('[data-tpl]');if(tp){const f=$('#doneform');const x=f._tpl[+tp.dataset.tpl];f.ntipo.value=x.tipo;f.ndata.value=x.data;f.ndesc.value=x.desc;f.ndir.value=x.dir;f.querySelectorAll('[data-tpl]').forEach(y=>y.classList.toggle('on',y===tp));return;}
+  const rd=t.closest('[data-rd]');if(rd){$('#reschform').data.value=rd.dataset.rd;document.querySelectorAll('[data-rd]').forEach(y=>y.classList.toggle('on',y===rd));return;}
+  const dy=t.closest('[data-day]');if(dy){ev.preventDefault();F.dia=F.dia===dy.dataset.day?'':dy.dataset.day;render();return;}
+  const gg=t.closest('[data-go]');if(gg){go(gg.dataset.go);return;}
+  if(t.closest('[data-stop]'))return;
+  if(t.closest('#ov')&&!t.closest('#sheet')){closeSheet();return;}
+  const al=t.closest('[data-alert]');if(al){if(al.dataset.item){const it=S.items.find(i=>i.id===al.dataset.item);if(it)openItemForm(it,'edit');}else if(al.dataset.cid)go('contato/'+al.dataset.cid);return;}
+  const oi=t.closest('[data-open-item]');if(oi){const it=S.items.find(i=>i.id===oi.dataset.openItem);if(it)openItemForm(it,'edit');return;}
+  const oc=t.closest('[data-open-contact]');if(oc){go('contato/'+oc.dataset.openContact);return;}
+});
+document.addEventListener('submit',ev=>{ev.preventDefault();const f=ev.target;
+  if(f.id==='itemform')submitItemForm(f);else if(f.id==='contactform')submitContactForm(f);else if(f.id==='eventform')submitEventForm(f);else if(f.id==='doneform')submitDone(f);
+  else if(f.id==='reschform'){const it=S.items.find(i=>i.id===f.dataset.id);reschedule(it,f.data.value,f.hora.value,f.motivo.value.trim());closeSheet();toast('Reprogramado para '+fmtD(it.data));render();}
+  else if(f.id==='cancelform'){const j=f.just.value.trim();if(j.length<5){const e=$('#cancerr');e.textContent='Cancelamento exige justificativa (mín. 5 caracteres).';e.classList.add('on');return;}const it=S.items.find(i=>i.id===f.dataset.id);it.status='CANCELADO';it.justificativa=j;hist(it,'CANCELADO',j);save();closeSheet();toast('Item cancelado com justificativa');render();}
+  else if(f.id==='cfgform'){const fd=new FormData(f);const s=S.settings;s.responsaveis=fd.get('responsaveis').split('\n').map(x=>x.trim()).filter(Boolean);for(const k of ['diasSemContato','diasInativo','diasOrcFollow','diasOportParada','diasVencimento','minEventosAnalise'])s[k]=+fd.get(k)||DEFAULT_SETTINGS[k];s.notif=fd.get('notif')==='on';
+    if(s.notif&&'Notification' in window&&Notification.permission==='default')Notification.requestPermission();save();toast('Configurações salvas');render();}
+  else if(f.id==='qcform')runQuick();
+});
+document.addEventListener('change',ev=>{const t=ev.target;
+  if(t.name==='contatoId'&&t.form&&t.form.id==='itemform')$('#newcbox').style.display=t.value==='__new'?'grid':'none';
+  if(t.name==='nonext')$('#nonextbox').style.display=t.checked?'block':'none';
+  if(['f_status','f_tipo','f_prio','f_dir'].includes(t.name)){F[t.name.slice(2)]=t.value;render();}
+  if(t.name==='c_tipo'){CF.tipo=t.value;$('#clist').innerHTML=contactList();}
+  if(t.id==='impfile'&&t.files[0]){const rd=new FileReader();rd.onload=()=>{try{const d=JSON.parse(rd.result);if(!d||!Array.isArray(d.contacts)||!Array.isArray(d.items))throw new Error('formato inválido');if(!confirm('Importar backup? Substitui os dados atuais.'))return;S=Object.assign(emptyState(),d);S.settings=Object.assign({},DEFAULT_SETTINGS,d.settings||{});save();toast('Backup importado');render();}catch(e){alert('Arquivo inválido: '+e.message);}};rd.readAsText(t.files[0]);t.value='';}
+});
+document.addEventListener('input',ev=>{const t=ev.target;if(t.id==='c_q'){CF.q=t.value;$('#clist').innerHTML=contactList();}if(t.id==='f_q'){F.q=t.value;clearTimeout(t._d);t._d=setTimeout(()=>{render();const n=$('#f_q');n.focus();n.setSelectionRange(n.value.length,n.value.length);},350);}});
+window.addEventListener('hashchange',()=>{closeSheet();render();window.scrollTo(0,0);});
+const QC_EX=['Quarta-feira instalar réguas no Posto Energy, levar 2 breakaways 3/4','Cobrar João sexta se ele não pagar','Visitar TRR Arapongas amanhã às 10h','Orçamento para Posto Trevo dia 15 R$ 3.500','Comprar 4 swivels semana que vem'];
+function init(){load();const n=iciDecayCheck();if(n)save();render();let k=0;setInterval(()=>{$('#qcin').placeholder='ex.: '+QC_EX[k++%QC_EX.length];},4000);setInterval(render,10*60*1000);}
+window.AGENDA={get S(){return S;},parseCommand,iciCompute,priority,allAlerts,loadSample,validateItem,render};
+init();
+
+</script>
+</body>
+</html>
