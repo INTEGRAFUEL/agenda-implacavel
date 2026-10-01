@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>AGENDA IMPLACÁVEL — IN’TEGRA FUEL</title>
+<title>OFFICIUM INEXORABILE — IN’TEGRA FUEL</title>
 <meta name="description" content="Agenda operacional e controle de pendências da IN'TEGRA Fuel. NÃO PERCA A DIREÇÃO.">
 <meta name="theme-color" content="#0a0e13">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Agenda Implacável">
+<meta name="apple-mobile-web-app-title" content="Officium Inexorabile">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f5a524'/%3E%3Ctext x='32' y='43' font-family='Arial' font-weight='900' font-size='30' text-anchor='middle' fill='%23111'%3EAI%3C/text%3E%3C/svg%3E">
-<link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22AGENDA%20IMPLAC%C3%81VEL%20%E2%80%94%20IN%E2%80%99TEGRA%20FUEL%22%2C%22short_name%22%3A%22Agenda%20Implac%C3%A1vel%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%230a0e13%22%2C%22theme_color%22%3A%22%230a0e13%22%2C%22lang%22%3A%22pt-BR%22%7D">
+<link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22OFFICIUM%20INEXORABILE%20%E2%80%94%20IN%E2%80%99TEGRA%20FUEL%22%2C%22short_name%22%3A%22Officium%20Inexorabile%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%230a0e13%22%2C%22theme_color%22%3A%22%230a0e13%22%2C%22lang%22%3A%22pt-BR%22%7D">
 <style>
 :root{--bg:#0a0e13;--bg2:#0f141b;--card:#131a23;--card2:#18212c;--bd:#223041;--tx:#e8eef5;--mu:#8a98a8;--ac:#f5a524;--ac2:#ffcc4d;--p1:#ff4d4f;--p2:#ff9a1f;--p3:#3b82f6;--p4:#6b7785;--ok:#22c55e;--r:14px}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -172,7 +172,7 @@ hr.s{border:0;border-top:1px solid var(--bd);margin:12px 0}
 </head>
 <body>
 <header class="top">
-  <div class="brand"><div class="logo">AI</div><h1>AGENDA IMPLACÁVEL<small>IN’TEGRA FUEL · NÃO PERCA A DIREÇÃO.</small></h1><div class="sp"></div><button class="iconbtn" data-go="alertas" title="Alertas">🔔</button><button class="iconbtn" data-go="config" title="Configurações">⚙</button></div>
+  <div class="brand"><div class="logo">OI</div><h1>OFFICIUM INEXORABILE<small>IN’TEGRA FUEL · NÃO PERCA A DIREÇÃO.</small></h1><div class="sp"></div><button class="iconbtn" data-go="alertas" title="Alertas">🔔</button><button class="iconbtn" data-go="config" title="Configurações">⚙</button></div>
   <form class="qc" id="qcform" autocomplete="off"><input id="qcin" enterkeyhint="go" placeholder="ex.: Cobrar João sexta se ele não pagar" aria-label="Comando rápido"><button type="submit" title="Interpretar">➜</button></form>
 </header>
 <main id="view"></main>
@@ -184,7 +184,7 @@ hr.s{border:0;border-top:1px solid var(--bd);margin:12px 0}
 <div class="toast" id="toast"></div>
 <script>
 'use strict';
-/* ============ AGENDA IMPLACÁVEL — núcleo (dados, datas, ICI, prioridade, alertas, parser) ============ */
+/* ============ OFFICIUM INEXORABILE — núcleo (dados, datas, ICI, prioridade, alertas, parser) ============ */
 const LS_KEY='agendaImplacavel.v1';
 const TIPOS_CONTATO=['CLIENTE','PROSPECT','FORNECEDOR','PARCEIRO','TÉCNICO','PRESTADOR DE SERVIÇO','FABRICANTE','REPRESENTANTE','OUTRO'];
 const TIPOS_ITEM=['ATENDIMENTO','INSTALAÇÃO','MANUTENÇÃO','VISITA COMERCIAL','REUNIÃO','ORÇAMENTO','COBRANÇA','COMPRA','ENTREGA','FOLLOW-UP','RETORNO AO CLIENTE','VENCIMENTO','PÓS-VENDA','PROSPECÇÃO','OUTRO'];
@@ -709,7 +709,7 @@ function viewConfig(){const s=S.settings;return `<div class="hero"><h2>CONFIGURA
   <div class="card"><b>Backup</b><div class="acts"><button data-act="export">⬇ Exportar JSON</button><button data-act="import">⬆ Importar JSON</button></div><input type="file" id="impfile" accept=".json,application/json" style="display:none"></div>
   <div class="card"><b>Demonstração</b><div class="small muted">Carrega contatos, compromissos e histórico FICTÍCIOS (Londrina, Cambé, Arapongas…). Substitui os dados atuais.</div><div class="acts"><button data-act="sample">Carregar dados de exemplo (fictícios)</button></div></div>
   <div class="card"><b style="color:var(--p1)">Zona de perigo</b><div class="acts"><button class="btn dng" data-act="wipe">Apagar tudo</button></div></div>
-  <div class="small muted" style="text-align:center">AGENDA IMPLACÁVEL v1 · IN’TEGRA FUEL · NÃO PERCA A DIREÇÃO.</div>`;}
+  <div class="small muted" style="text-align:center">OFFICIUM INEXORABILE v1 · IN’TEGRA FUEL · NÃO PERCA A DIREÇÃO.</div>`;}
 
 /* ---------- sheets / formulários ---------- */
 function openSheet(html){$('#sheet').innerHTML=html;$('#ov').classList.add('on');$('#sheet').scrollTop=0;}
@@ -843,7 +843,7 @@ function render(){
   $('#view').innerHTML=sampleBanner()+html;notifyCritical();
 }
 const notified=new Set();
-function notifyCritical(){if(!S.settings.notif||!('Notification' in window)||Notification.permission!=='granted')return;for(const a of allAlerts().filter(a=>a.sev==='CRÍTICO')){const k=a.kind+a.text;if(notified.has(k))continue;notified.add(k);try{new Notification('AGENDA IMPLACÁVEL — CRÍTICO',{body:a.text});}catch(e){}}}
+function notifyCritical(){if(!S.settings.notif||!('Notification' in window)||Notification.permission!=='granted')return;for(const a of allAlerts().filter(a=>a.sev==='CRÍTICO')){const k=a.kind+a.text;if(notified.has(k))continue;notified.add(k);try{new Notification('OFFICIUM INEXORABILE — CRÍTICO',{body:a.text});}catch(e){}}}
 
 /* ---------- eventos globais ---------- */
 function download(name,text){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([text],{type:'application/json'}));a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},500);}
@@ -865,7 +865,7 @@ document.addEventListener('click',ev=>{
       case 'newitem':{const d=todayStr();openItemForm(normalizeItem({data:d,prazoProxima:d}),'new');break;}
       case 'sample':if(!S.contacts.length&&!S.items.length||confirm('Carregar dados de exemplo FICTÍCIOS? Isso substitui os dados atuais.')){loadSample();toast('Dados de exemplo (fictícios) carregados');go('hoje');render();}break;
       case 'wipe':if(prompt('Digite APAGAR para remover todos os dados deste navegador:')==='APAGAR'){S=emptyState();save();toast('Tudo apagado');go('hoje');render();}break;
-      case 'export':download('agenda-implacavel-backup-'+todayStr()+'.json',JSON.stringify(S,null,1));break;
+      case 'export':download('officium-inexorabile-backup-'+todayStr()+'.json',JSON.stringify(S,null,1));break;
       case 'import':$('#impfile').click();break;
     }return;}
   const pr=t.closest('[data-preset]');if(pr){const p=PRESETS[+pr.dataset.preset];const f=$('#eventform');f.dimensao.value=p[1];f.resultado.value=p[2];f.severidade.value=p[3];f.tipo.value=p[4];if(!f.descricao.value)f.descricao.value=p[0];f.querySelectorAll('[data-preset]').forEach(x=>x.classList.toggle('on',x===pr));return;}
